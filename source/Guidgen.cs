@@ -87,10 +87,13 @@ namespace GuidGen
 					{
 						guids.AddRange(item.Guids);
 						Console.WriteLine(((Cmdline.Has("l"))?((item.Line+1).ToString()+". "):"") + item.Match);
-						foreach (Guid g in item.Guids)
+						if (type != null)
 						{
-							string formatted = GuidFormats.Format(type, g, upcase, true);
-							if (formatted != item.Match) Console.WriteLine("\t" + formatted);
+							foreach (Guid g in item.Guids)
+							{
+								string formatted = GuidFormats.Format(type, g, upcase, true);
+								if (formatted != item.Match) Console.WriteLine("\t" + formatted);
+							}
 						}
 					}
 					if (Cmdline.Has("copy")) System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.Text, GuidFormats.Format(type, guids, upcase, true));
