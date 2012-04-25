@@ -1,122 +1,110 @@
-<pre>
-GuidgenConsole
-==============
+<h2>GuidgenConsole</h2>
 
-Guidgen Console app generates, replaces, finds, and reformats GUIDs from the command line.
-
+<h3>Guidgen Console app generates, replaces, finds, and reformats GUIDs from the command line.</h3>
+<p>
 Guidgen console is a command line application that generates X number of guids in the format you want - pasting them to the clipboard - if you wish. But that's not all! It also allows pipe usage to find and replace GUIDs or just run in the background as a reformatter. Oh, the number of times I just needed to convert from one format to another... Try going from code to SQL to LDAP and you'll understand, but if you do understand, then this app is for you.
+</p>
 
-Features
- Guidgen works on the command line. No clunky windows app needed.
- Guidgen is a portable windows app (as long as you have the .NET framework - and who doesn't?)
- Can replace that antiquated Visual Studio Create GUID tool.
- Generate GUID(s) in any number of formats.
- Find GUID(s)
- Reformat GUID(s)
- Replace GUID(s) with new guids.
+<h4>Features</h4>
+<ul>
+	<li>Guidgen works on the command line. No clunky windows app needed.</li>
+ 	<li>Guidgen is a portable windows app (as long as you have the .NET framework - and who doesn't?)</li>
+ 	<li>Can replace that antiquated Visual Studio Create GUID tool.</li>
+ 	<li>Generate GUID(s) in any number of formats.</li>
+ 	<li>Find GUID(s)</li>
+ 	<li>Reformat GUID(s)</li>
+ 	<li>Replace GUID(s) with new guids.</li>
+</ul>
 
-Guidgen can generate:
- Zero Guids
-   00000000-0000-0000-0000-000000000000
- Sequential Guids
-   c2d0e2e8-2b60-11e1-b1ea-0024e8359915
-   c2d0e2e9-2b60-11e1-b1ea-0024e8359915
-   c2d0e2ea-2b60-11e1-b1ea-0024e8359915
- Plain Vanilla Guids
-   cf120f27-074c-43c0-80cb-57c1e3493c54
-   f9018966-a96c-482c-b608-8695a95fdb0b
-   a1065215-f596-445a-9e28-1aaba3a3e2be
-  
-Available Formats (See below for examples)
- N: 32 digits
- D: 32 digits with hyphens
- P: 32 digits enclosed in parentheses
- B: 32 digits enclosed in Brackets
- CP: c/c++ format
- GUID: c/c++ format with declaration
- DEFINE_GUID: c/c++ format with declaration
- OLECREATE: c++/COM format with declaration
- H: Hex byte array
- HC#: Hex byte array in c/c++/c# format
- HVB: Hex byte array in VB.NET format
- HLDAP: Hex byte array in LDAP format
- BASE64: Base64 of byte array - single instance
- BASE64C: Base64 of byte array - Combined bytes from all GUIDs
+<h4>Guidgen can generate</h4>
+<ul>
+	<li>Zero Guids
+   	<ul><li>00000000-0000-0000-0000-000000000000</li></ul>
+  </li>
+	<li>Sequential Guids
+   <ul><li>c2d0e2e8-2b60-11e1-b1ea-0024e8359915</li>
+   <li>c2d0e2e9-2b60-11e1-b1ea-0024e8359915</li>
+   <li>c2d0e2ea-2b60-11e1-b1ea-0024e8359915</li></ul>
+  </li>
+	<li>Plain Vanilla Guids
+   <ul><li>cf120f27-074c-43c0-80cb-57c1e3493c54</li>
+   <li>f9018966-a96c-482c-b608-8695a95fdb0b</li>
+   <li>a1065215-f596-445a-9e28-1aaba3a3e2be</li></ul>
+  </li>
+</ul>
  
-Usage
+<h4>Usage</h4>
+<pre>
 c:\> guidgen.exe /?
 
-usage: GuidGen.exe [N|D|P|B|C|CP|H|HC#|HVB|HLDAP|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]
+usage: GuidGen.exe [N|D|P|B|C|CP|H|HC#|HVB|HLDAP|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]<br/>
+<h6>Output Formats:</h6>
+  <b>N</b>: 32 digits
+      <i>87654321dcbafe1054326789abcdef01</i>
+  <b>D</b>: 32 digits separated by hyphens (DEFAULT)
+      <i>00000000-0000-0000-0000-000000000000</i>
+  <b>P</b>: 32 digits separated by hyphens, enclosed in parentheses
+      <i>{00000000-0000-0000-0000-000000000000}</i>
+  <b>B</b>: 32 digits separated by hyphens, enclosed in brackets
+      <i>[00000000-0000-0000-0000-000000000000]</i>
+  <b>C</b>: c format
+      <i>0x00000000,0x0000,0x0000,0x0000,0x00,0x00,0x00,0x00,0x00,0x00</i>
+  <b>CP</b>: c format, enclosed in parentheses
+      <i>{0x00000000,0x0000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00}}</i>
+  <b>GUID</b>: c format, enclosed in parentheses
+      <i>static const GUID <> = [CP FORMAT];</i>
+  <b>DEFINE_GUID</b>: c format, enclosed in parentheses
+      <i>DEFINE_GUID(<>, [C FORMAT])</i>
+  <b>OLECREATE</b>: c format, enclosed in parentheses
+      <i>IMPLEMENT_OLECREATE(<>, <>, [C FORMAT])</i>
+  <b>H</b>: HEX byte array
+      <i>0123456789abcdef0123456789abcdef</i>
+  <b>HC#</b>: CSharp Hex byte array
+      <i>0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef,0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef</i>
+  <b>HVB</b>: VB Hex byte array
+      <i>&H01,&H23,&H45,&H67,&H89,&Hab,&Hcd,&Hef,&H01,&H23,&H45,&H67,&H89,&Hab,&Hcd,&Hef</i>
+  <b>HLDAP</b>: Hex byte array in ldap query form
+      <i>\\01\\23\\45\\67\\89\\ab\\cd\\ef\\01\\23\\45\\67\\89\\ab\\cd\\ef</i>
+  <b>BASE64</b>:
+      <i>AAAAAAAAAAAAAAAAAAAAAA==</i>
+  <b>BASE64C</b>: combine bytes to single base64 string
+      <i>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</i>
+<h6>Type of GUID to create</h6>
+  <b>G</b>: New Guid (default)
+  <b>Z</b>: Zero Guid
+  <b>S</b>: Sequential Guid
+<h6>Additional Arguments</h6>
+  <b>/u</b>: returns format in uppercase (unless base64)
+  <b>/count (number)</b>: will generate the given number of guids
+  <b>/n (number)</b>: same as /count
+  <b>/Find (format)</b>: Finds guids in format (no copy)
+  <b>/l</b>: shows line number for found guids
+  <b>/copy</b>: forces copy to clipboard
+  <b>/nocopy</b>: does not copy to clipboard
+  <b>/Replace</b>: replaces guid with (/Z|/S|/G) or same guid to specified output format (nocopy) (no-BASE64C)
+  <b>/Replace [format]</b>: replaces specified format with same guid or new guid if (/Z|/S|/G) is specified to specified output format (nocopy)
+  <b>/ReplaceByLine</b>: like replace, but does everything per input line. (see above)
+  <b>/ReplaceByLine [format]</b>: like replace, but does everything per input line. (see above)
+  <b>/guid (GUID)</b>: uses specified (GUID) as input for find and replace.
+  <b>/clipboard</b>: uses clipboard for find and replace
+<h6>Notes:</h6>
+   if find or replace is used and data is not piped in (ex: more find.txt | guidgen /find) 
+   then enter guids and then type "quit" to find/replace and end.
+</pre>	
 
- Output Formats:
-  N: 32 digits
-  87654321dcbafe1054326789abcdef01
-  D: 32 digits separated by hyphens (DEFAULT)
-	00000000-0000-0000-0000-000000000000
-  P: 32 digits separated by hyphens, enclosed in parentheses
-	{00000000-0000-0000-0000-000000000000}
-  B: 32 digits separated by hyphens, enclosed in brackets
-	[00000000-0000-0000-0000-000000000000]
-  C: c format
-	0x00000000,0x0000,0x0000,0x0000,0x00,0x00,0x00,0x00,0x00,0x00
-  CP: c format, enclosed in parentheses
-	{0x00000000,0x0000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00}}
-  GUID: c format, enclosed in parentheses
-	static const GUID <> = [CP FORMAT];
-  DEFINE_GUID: c format, enclosed in parentheses
-	DEFINE_GUID(<>, [C FORMAT])
-  OLECREATE: c format, enclosed in parentheses
-	IMPLEMENT_OLECREATE(<>, <>, [C FORMAT])
-  H: HEX byte array
-	0123456789abcdef0123456789abcdef
-  HC#: CSharp Hex byte array
-	0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef,0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef
-  HVB: VB Hex byte array
-	&H01,&H23,&H45,&H67,&H89,&Hab,&Hcd,&Hef,&H01,&H23,&H45,&H67,&H89,&Hab,&Hcd,&Hef
-  HLDAP: Hex byte array in ldap query form
-	\\01\\23\\45\\67\\89\\ab\\cd\\ef\\01\\23\\45\\67\\89\\ab\\cd\\ef
-  BASE64:
-	AAAAAAAAAAAAAAAAAAAAAA==
-  BASE64C: combine bytes to single base64 string
-	AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
-
- Type of GUID to create
-  G: New Guid (default)
-  Z: Zero Guid
-  S: Sequential Guid
-
- Additional Arguments
-  /u: returns format in uppercase (unless base64)
-  /count (number): will generate the given number of guids
-  /n (number): same as /count
-  /Find (format): Finds guids in format (no copy)
-  /l: shows line number for found guids
-  /copy: forces copy to clipboard
-  /nocopy: does not copy to clipboard
-  /Replace: replaces guid with (/Z|/S|/G) or same guid to specified output format (nocopy) (no-BASE64C)
-  /Replace [format]: replaces specified format with same guid or new guid if (/Z|/S|/G) is specified to specified output format (nocopy)
-  /ReplaceByLine: like replace, but does everything per input line. (see above)
-  /ReplaceByLine [format]: like replace, but does everything per input line. (see above)
-  /guid (GUID): uses specified (GUID) as input for find and replace.
-  /clipboard: uses clipboard for find and replace
-
- Notes:
-   if find or replace is used and data is not piped in (ex: more find.txt | guidgen /find) then enter guids and then type "quit" to find/replace and end.
-	
-
-How or where do I install it?
+<h4>How or where do I install it?</h4>
  Install it where ever you want. I usually drop it into c:\windows so I can run it from anywhere.
 
-How do I add it to Visual Studio Tools?
- Goto: Tools > External Tools
- Set the title, location where you saved it and any command line arguments.
- Click the "Use Output Window"
- Move it to the top.
- Click ok.
+<h4>How do I add it to Visual Studio Tools?</h4>
+ Goto: Tools > External Tools<br/>
+ Set the title, location where you saved it and any command line arguments.<br/>
+ Click the "Use Output Window"<br/>
+ Move it to the top.<br/>
+ Click ok.<br/>
 
- Also add a quick key Ctrl-~
-  Goto: Tools > Options > Environment > Keyboard 
-  Select "Tools.ExternalCommand1" (if you moved it to the top...)
-  Press the key combination. 
-  Click ok. 
+ <h5>Also add a quick key Ctrl-~</h5>
+  Goto: Tools > Options > Environment > Keyboard <br/>
+  Select "Tools.ExternalCommand1" (if you moved it to the top...)<br/>
+  Press the key combination. <br/>
+  Click ok. <br/>
 </pre>
