@@ -1,3 +1,4 @@
+<div style="word-wrap:pre">
 GuidgenConsole
 ==============
 
@@ -118,4 +119,4 @@ How do I add it to Visual Studio Tools?
   Select "Tools.ExternalCommand1" (if you moved it to the top...)
   Press the key combination. 
   Click ok. 
-  
+</div>
