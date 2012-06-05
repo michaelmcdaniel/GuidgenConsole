@@ -93,7 +93,8 @@ usage: GuidGen.exe [N|D|P|B|C|CP|H|HC#|HVB|HLDAP|BASE64|BASE64C] [/G|/S|/Z] [/no
 </pre>	
 
 <h4>How or where do I install it?</h4>
- Install it where ever you want. I usually drop it into c:\windows so I can run it from anywhere.
+ Install it where ever you want. I usually drop it into c:\windows so I can run it from anywhere.<br/><br/>
+ Guidgen requires the .NET Framework 4 Client Profile available at: <a href="http://www.microsoft.com/en-us/download/details.aspx?id=24872">http://www.microsoft.com/en-us/download/details.aspx?id=24872</a>
 
 <h4>How do I add it to Visual Studio Tools?</h4>
  Goto: Tools > External Tools<br/>
