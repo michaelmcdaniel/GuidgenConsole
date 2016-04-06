@@ -95,6 +95,11 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
    if find or replace is used and data is not piped in (ex: more find.txt | guidgen /find) 
    then enter guids and then type "quit" to find/replace and end.
 </pre>	
+<h4>Where can I get it?</h4>
+Latest binaries in the binaries folder of the project or use powershell and chocolately!
+<code><pre>
+choco install guidgen-console -version 2.0.0.2
+</pre></code>
 
 <h4>How or where do I install it?</h4>
  Install it where ever you want. I usually drop it into c:\windows so I can run it from anywhere.<br/><br/>
