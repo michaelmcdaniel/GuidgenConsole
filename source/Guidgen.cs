@@ -197,7 +197,9 @@ namespace GuidGen
 			output += "  HLDAP: Hex byte array in ldap query form " + (format=="HLDAP"?"(DEFAULT)":"") + "\r\n";
 			output += "   \\\\01\\\\23\\\\45\\\\67\\\\89\\\\ab\\\\cd\\\\ef\\\\01\\\\23\\\\45\\\\67\\\\89\\\\ab\\\\cd\\\\ef\r\n";
 			output += "  ORACLE: ORACLE Hex byte array " + (format=="ORACLE"?"(DEFAULT)":"") + "\r\n";
-			output += "   \\\\89\\\\67\\\\45\\\\23\\\\01\\\\cd\\\\ab\\\\01\\\\ef\\\\23\\\\45\\\\67\\\\89\\\\ab\\\\cd\\\\ef\r\n";
+			output += "   8967452301cdab01ef23456789abcdef\r\n";
+			output += "  ORACLE_HEXTORAW: ORACLE Hex byte array with declaration " + (format=="ORACLE_HEXTORAW"?"(DEFAULT)":"") + "\r\n";
+			output += "   HEXTORAW('8967452301cdab01ef23456789abcdef')\r\n";
 			output += "  BASE64:  " + (format=="BASE64"?"(DEFAULT)":"") + "\r\n";
 			output += "   AAAAAAAAAAAAAAAAAAAAAA==\r\n";
 			output += "  BASE64C: combine bytes to single base64 string " + (format=="BASE64C"?"(DEFAULT)":"") + "\r\n";
