@@ -5,8 +5,20 @@ using System.Text;
 
 namespace GuidGen
 {
+	/// <summary>
+	/// Class Helper
+	/// </summary>
 	public static class Tools
 	{
+		/// <summary>
+		/// Generic convert function 
+		/// </summary>
+		/// <typeparam name="T">To Type</typeparam>
+		/// <typeparam name="F">From Type</typeparam>
+		/// <param name="val">Input value</param>
+		/// <param name="defaultValue">Default value if it can't convert.</param>
+		/// <param name="defaultOnException">Return default value if exception. (EAT Exception)</param>
+		/// <returns></returns>
 		public static T Convert<T, F>(F val, T defaultValue, bool defaultOnException=true)
 		{
 			if (val == null) return defaultValue;
@@ -42,6 +54,11 @@ namespace GuidGen
 
 		[System.Runtime.InteropServices.DllImport("rpcrt4.dll", SetLastError = true)]
 		private static extern int UuidCreateSequential(out Guid guid);
+
+		/// <summary>
+		/// Returns a System generated sequential Guid via rpcrt4::UuidCreateSequential
+		/// </summary>
+		/// <returns></returns>
 		public static Guid NewSequentialGuid()
 		{
 			const int RPC_S_OK = 0;

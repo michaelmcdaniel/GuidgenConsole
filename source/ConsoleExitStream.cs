@@ -5,6 +5,9 @@ using System.Text;
 
 namespace GuidGen
 {
+	/// <summary>
+	/// Stream reader to look for exit.
+	/// </summary>
 	public class ConsoleExitStream : System.IO.TextReader
 	{
 		bool _Done = false;
@@ -66,15 +69,11 @@ namespace GuidGen
 		public override string ReadToEnd()
 		{
 			throw new NotImplementedException();
-			//StringBuilder retVal = new StringBuilder();
-			//string line;
-			//while((line = ReadLine()) != null) retVal.AppendLine(line);
-			//return retVal.ToString();
 		}
 
 		public override string ToString()
 		{
-			return ReadToEnd();
+			return _Done.ToString();
 		}
 	}
 }

@@ -6,6 +6,9 @@ using System.Runtime.InteropServices;
 namespace GuidGen
 {
 
+	/// <summary>
+	/// Helper class to help deal with input/output/error redirection from console
+	/// </summary>
 	public static class ConsoleEx 
 	{    
 		public static bool OutputRedirected { get { return FileType.Char != GetFileType(GetStdHandle(StdHandle.Stdout)); }}    

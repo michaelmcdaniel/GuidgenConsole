@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata>
+    <id>guidgen-console</id>
+    <title>Guidgen Console</title>
+    <version>2.0.0.1</version>
+    <authors>Michael McDaniel</authors>
+    <owners>Michael McDaniel</owners>
+    <summary>Generate/Find/Replace GUIDS on the windows command line.</summary>
+    <description>Guidgen console is a command line application that generates X number of guids in the format you want - pasting them to the clipboard - if you wish. But that's not all! It also allows pipe usage to find and replace GUIDs or just run in the background as a reformatter.  Supports Zero Guids, Sequential Guids, and plain vanilla Guids.  </description>
+    <projectUrl>https://github.com/michaelmcdaniel/GuidgenConsole</projectUrl>
+    <tags>GUID uuid console</tags>
+    <licenseUrl>https://en.wikipedia.org/wiki/WTFPL</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance> <!-- or true if you require the user to accept the License before installing -->
+    <iconUrl>https://cdn.rawgit.com/michaelmcdaniel/GuidgenConsole/master/source/logo.png</iconUrl>
+	<dependencies>
+		<dependency id="dotnet4.6.1" version="4.6.01055.00" />
+	</dependencies>
+	<frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System.Windows.Forms" targetFramework="net40" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+	  <file src="guidgen.exe" />
+	  <file src="guidgen.exe.config" />
+  </files>
+</package>

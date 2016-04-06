@@ -6,12 +6,18 @@ using System.Text.RegularExpressions;
 
 namespace GuidGen
 {
+	/// <summary>
+	/// Class that helps process the command line arguments
+	/// </summary>
 	public static class Cmdline
 	{
 		private static List<string> _Options = new List<string>();
 		private static List<Argument> _ArgumentsByIndex = new List<Argument>();
 		private static Dictionary<string, Argument> _ArgumentsBySwitch = new Dictionary<string,Argument>(StringComparer.InvariantCultureIgnoreCase);
 
+		/// <summary>
+		/// Static constructor that preloads all the arguments from the command line.
+		/// </summary>
 		static Cmdline()
 		{
 			string[] args = System.Environment.GetCommandLineArgs();
@@ -19,7 +25,7 @@ namespace GuidGen
 
 			// start arguments need no key
 			int index = 1;
-			Argument empty = new Argument();
+			Argument empty = Argument.Empty;
 			for (; index < args.Length; index++)
 			{
 				if (args[index][0] == '-' || args[index][0] == '/' || args[index][0] == '\\') break;
@@ -86,6 +92,9 @@ namespace GuidGen
 			return (index > 0 && index < _ArgumentsByIndex.Count);
 		}
 
+		/// <summary>
+		/// Command line argument
+		/// </summary>
 		public class Argument
 		{
 			private string _Key = "";
@@ -102,41 +111,72 @@ namespace GuidGen
 				_Values = new List<string>(values);
 			}
 
+			/// <summary>
+			/// Gets whether or not a key is present
+			/// </summary>
 			public bool IsSwitch
 			{
 				get { return !string.IsNullOrEmpty(_Key); }
 			}
 
+			/// <summary>
+			/// Get/set the key for the Argument
+			/// </summary>
 			public string Key
 			{
 				get { return _Key; }
 				set { _Key = value; }
 			}
 
+			/// <summary>
+			/// Generates hashcode from key
+			/// </summary>
+			/// <returns></returns>
 			public override int GetHashCode()
 			{
-				return Key.GetHashCode();
+				return (Key??"").GetHashCode();
 			}
 
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <returns>Key=[comma separated values]</returns>
 			public override string ToString()
 			{
 				return _Key + "=" + string.Join(", ", _Values.ToArray());
 			}
 
+			/// <summary>
+			/// Get/set a list of values
+			/// </summary>
 			public List<string> Values
 			{
 				get { return _Values; }
 				set { _Values = value; }
 			}
 
+			/// <summary>
+			/// Gets the value of the Argument
+			/// </summary>
+			/// <remarks>
+			/// At a minimum will return a empty string.  If the value is an array, will return arguments as space separated list.
+			/// </remarks>
 			public string Value
 			{
 				get
 				{
 					if (_Values.Count == 0) return "";
-					if (_Values.Count == 1) return _Values[0];
+					if (_Values.Count == 1) return _Values[0]??"";
 					return string.Join(" ", _Values.ToArray());
 				}
+			}
+
+			/// <summary>
+			/// Get a new empty argument
+			/// </summary>
+			public static Argument Empty
+			{
+				get { return new Argument(); }
 			}
 		}
 	}

@@ -5,9 +5,11 @@ using System.Text;
 
 namespace GuidGen
 {
+	/// <summary>
+	/// Class that generates Guids
+	/// </summary>
 	public class Guider : IEnumerator<Guid>
 	{
-
 
 		private Func<Guid> _Creator = null;
 		private int _Count = -1;
@@ -32,12 +34,18 @@ namespace GuidGen
 			return this;
 		}
 
+		/// <summary>
+		/// Get/set the number of Guids to generate
+		/// </summary>
 		public int Count
 		{
 			get { return _Count; }
 			set { _Count = value; }
 		}
 
+		/// <summary>
+		/// Get the current index
+		/// </summary>
 		public int Index
 		{
 			get { return _Index; }
@@ -100,6 +108,18 @@ namespace GuidGen
 		public static Guider AsCurrent()
 		{
 			return new Guider();
+		}
+
+		public static Guider FromType(string type, Guider defaultValue)
+		{
+			Guider retVal = defaultValue;
+			switch((type??"").ToLower())
+			{
+				case "z": retVal = Guider.NewZeroGuid; break;
+				case "s": retVal = Guider.NewSequentialGuid; break;
+				case "g": retVal = Guider.NewGuid; break;
+			}
+			return retVal;
 		}
 	}
 }

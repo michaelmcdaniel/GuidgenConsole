@@ -20,6 +20,7 @@ namespace GuidGen
 		static GuidSearcher()
 		{
 			s_Search["N"] = GetParser("([a-f0-9]{2}){16}", c_StringByteOrder);
+			s_Search["ORACLE"] = GetParser("([a-f0-9]{2}){16}", c_HexByteOrder);
 			s_Search["D"] = GetParser("([a-f0-9]{2}){4}(?:-([a-f0-9]{2}){2}){3}-([a-f0-9]{2}){6}", c_StringByteOrder);
 			s_Search["P"] = GetParser("\\{([a-f0-9]{2}){4}(?:-([a-f0-9]{2}){2}){3}-([a-f0-9]{2}){6}\\}", c_StringByteOrder);
 			s_Search["B"] = GetParser("\\[([a-f0-9]{2}){4}(?:-([a-f0-9]{2}){2}){3}-([a-f0-9]{2}){6}\\]", c_StringByteOrder);
