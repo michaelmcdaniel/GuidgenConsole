@@ -2,11 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/source/bin
-/source/obj
 *.suo
 *.user
-/source/mcdaniel.codesign.snk
 /UnitTesting/GuidGen.UnitTesting/obj/Release
 /source/GuidGen.Console/bin
 /source/GuidGen.Console/obj
