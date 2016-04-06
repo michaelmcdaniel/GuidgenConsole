@@ -45,7 +45,7 @@
     <ErrorReportUrl>http://mcdaniel.ws/send/note</ErrorReportUrl>
     <ProductName>Guidgen Console</ProductName>
     <PublisherName>Michael McDaniel</PublisherName>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -115,6 +115,7 @@
       <Name>System</Name>
     </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>

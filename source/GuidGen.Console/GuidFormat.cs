@@ -11,30 +11,29 @@ namespace GuidGen
 	/// </summary>
 	public class GuidFormat : BaseGuidFormat
 	{
-		private string _MatchPattern = null;
+		private static Regex s_AutoIndexMatcher = new Regex(@"\{(?'byte_index'\d+)\}");
+		private static Regex s_AutoMemberMatcher = new Regex(@"\<\<.*?\>\>");
+		
+		private string _OutputFormat = null;
 
 		/// <summary>
 		/// Get/set the format string that is applied to the byteorder
 		/// </summary>
-		public string OutputFormat { get; set; }
+		public string OutputFormat
+		{
+			get { return _OutputFormat; }
+			set
+			{
+				_OutputFormat = value.Replace("\\s", "");
+				Matcher = new Regex(s_AutoMemberMatcher.Replace(s_AutoIndexMatcher.Replace(value.Replace("\\", "\\\\").Replace("\\\\s", "\\s*").Replace(" ", "\\s+").Replace("(", "\\(").Replace(")", "\\)").Replace("[", "\\[").Replace("]", "\\]"), (m)=> { return "(?'b" + m.Groups["byte_index"].Value + "'[a-zA-Z0-9]{2})"; }).Replace("{{", "\\{").Replace("}}", "\\}"), @"(\<\<)?[a-zA-Z_][a-zA-Z0-9_]*(\>\>)?"));
+			}
+		}
+
 
 		/// <summary>
 		/// The byte order of the Guid that is applied to the format string
 		/// </summary>
-		public byte[] ByteOrder { get; set; }
-
-		/// <summary>
-		/// Get/set the regular expression for matching
-		/// </summary>
-		public string Match
-		{
-			get { return _MatchPattern; }
-			set
-			{
-				_MatchPattern = value;
-				Matcher = new Regex(_MatchPattern, RegexOptions.IgnoreCase);
-			}
-		}
+		public byte[] ByteOrder { get; set; } = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
 
 		/// <summary>
 		/// Formats the given guid in the output format using the byte order

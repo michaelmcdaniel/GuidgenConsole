@@ -26,7 +26,7 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("2.0.0.1")]
+[assembly: AssemblyVersion("2.0.0.2")]
 [assembly: ComVisible(false)]
 [assembly: Guid("5df9e1bc-73c5-4744-82f9-cd11f85661b8")]
 

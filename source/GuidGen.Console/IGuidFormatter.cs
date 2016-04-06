@@ -19,5 +19,6 @@ namespace GuidGen
 		int GetHashCode();
 		bool Equals(string s);
 
+		bool TryParse(string s, out Guid guid);
 	}
 }

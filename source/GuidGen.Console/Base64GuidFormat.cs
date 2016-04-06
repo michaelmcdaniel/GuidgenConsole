@@ -41,6 +41,56 @@ namespace GuidGen
 			}
 		}
 
+		public override bool TryParse(string s, out Guid guid)
+		{
+			if (string.IsNullOrWhiteSpace(s)) { guid = Guid.Empty; return false; }
+			try
+			{
+				byte[] bytes = Convert.FromBase64String(s);
+				if (bytes.Length == 16)
+				{
+					guid = new Guid(bytes);
+					return true;
+				}
+			}
+			catch (FormatException) { }
+
+			guid = Guid.Empty;
+			return false;
+		}
+
+		public virtual bool TryParse(string s, out IEnumerable<Guid> guids)
+		{
+			bool retVal = false;
+			if (string.IsNullOrWhiteSpace(s)) { guids = new Guid[] { }; return retVal; }
+			
+			try
+			{
+				byte[] bytes = Convert.FromBase64String(s);
+				if (bytes.Length > 0 && bytes.Length % 16 == 0)
+				{
+					Guid[] list = new Guid[bytes.Length/16];
+					for(int i = 0, j=0; i < bytes.Length; i+=16, j++)
+					{
+						byte[] single = new byte[16];
+						Buffer.BlockCopy(bytes, i, single, 0, 16);
+						list[j]=new Guid(single);
+					}
+					guids = list;
+					retVal = true;
+				}
+				else
+				{
+					guids = new Guid[] { };
+				}
+			}
+			catch (FormatException)
+			{
+				guids = new Guid[] { };
+			}
+			return retVal;
+		}
+
 		public override string ToString(Guid g, bool upcase, bool newline)
 		{
 			if (upcase == true) throw new ArgumentOutOfRangeException("upcase", "Base64 does not support upper case.");

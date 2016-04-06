@@ -77,6 +77,32 @@ namespace GuidGen
 			return Matcher.IsMatch(s);
 		}
 
+		public virtual bool TryParse(string s, out Guid guid)
+		{
+			if (string.IsNullOrEmpty(s)) { guid = Guid.Empty;  return false; }
+			Match m = Matcher.Match(s);
+			if (m.Success)
+			{
+				byte[] bytes = new byte[16];
+				for (int i = 0; i < 16; i++)
+				{
+					byte b;
+					if (!byte.TryParse(m.Groups["b" + i.ToString()].Value, System.Globalization.NumberStyles.HexNumber, null, out b))
+					{
+						if (!m.Success) throw new ArgumentOutOfRangeException();
+					}
+					bytes[i] = b;
+				}
+				guid = new Guid(bytes);
+			}
+			else
+			{
+				guid = Guid.Empty;
+			}
+			return m.Success;
+		}
+
+
 		/// <summary>
 		/// Get whether or not this format is the default format for the app.
 		/// </summary>
