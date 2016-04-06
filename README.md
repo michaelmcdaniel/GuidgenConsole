@@ -65,6 +65,10 @@ usage: GuidGen.exe [N|D|P|B|C|CP|H|HC#|HVB|HLDAP|BASE64|BASE64C] [/G|/S|/Z] [/no
       <i>&H01,&H23,&H45,&H67,&H89,&Hab,&Hcd,&Hef,&H01,&H23,&H45,&H67,&H89,&Hab,&Hcd,&Hef</i>
   <b>HLDAP</b>: Hex byte array in ldap query form
       <i>\\01\\23\\45\\67\\89\\ab\\cd\\ef\\01\\23\\45\\67\\89\\ab\\cd\\ef</i>
+  <b>ORACLE</b>: ORACLE Hex byte array
+      <i>8967452301cdab01ef23456789abcdef</i>
+  <b>ORACLE_HEXTORAW</b>: ORACLE Hex byte array with declaration
+      <i>HEXTORAW('8967452301cdab01ef23456789abcdef')</i>
   <b>BASE64</b>:
       <i>AAAAAAAAAAAAAAAAAAAAAA==</i>
   <b>BASE64C</b>: combine bytes to single base64 string
