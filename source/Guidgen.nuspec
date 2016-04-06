@@ -12,16 +12,16 @@
 		<tags>GUID uuid console</tags>
 		<licenseUrl>https://en.wikipedia.org/wiki/WTFPL</licenseUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<!-- or true if you require the user to accept the License before installing -->
 		<iconUrl>https://cdn.rawgit.com/michaelmcdaniel/GuidgenConsole/master/source/logo.png</iconUrl>
 		<docsUrl>https://github.com/michaelmcdaniel/GuidgenConsole/wiki</docsUrl>
 		<bugTrackerUrl>https://github.com/michaelmcdaniel/GuidgenConsole/issues</bugTrackerUrl>
 		<projectSourceUrl>https://github.com/michaelmcdaniel/GuidgenConsole/tree/master/source</projectSourceUrl>
-		<dependencies>
+		<!--<dependencies>
 			<dependency id="dotnet4.6.1" version="4.6.01055.00" />
-		</dependencies>
+		</dependencies>-->
 		<frameworkAssemblies>
 			<frameworkAssembly assemblyName="System" targetFramework="net40" />
+			<frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />
 			<frameworkAssembly assemblyName="System.Windows.Forms" targetFramework="net40" />
 		</frameworkAssemblies>
 	</metadata>

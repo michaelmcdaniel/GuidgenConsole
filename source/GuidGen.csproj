@@ -115,7 +115,6 @@
       <Name>System</Name>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
