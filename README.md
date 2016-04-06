@@ -37,7 +37,7 @@ Guidgen console is a command line application that generates X number of guids i
 <pre>
 c:\> guidgen.exe /?
 
-usage: GuidGen.exe [N|D|P|B|C|CP|H|HC#|HVB|HLDAP|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]<br/>
+usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORACLE|ORACLE_HEXTORAW|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]<br/>
 <h6>Output Formats:</h6>
   <b>N</b>: 32 digits
       <i>87654321dcbafe1054326789abcdef01</i>
