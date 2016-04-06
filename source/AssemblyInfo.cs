@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -6,8 +7,8 @@ using System.Runtime.CompilerServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly: AssemblyTitle("GuidGenEx")]
-[assembly: AssemblyDescription("Generate and format Guids")]
+[assembly: AssemblyTitle("GuidGen Console")]
+[assembly: AssemblyDescription("Generate, format, find, and replace Guids on the command line")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
@@ -26,6 +27,8 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("2.0.0.1")]
+[assembly: ComVisible(false)]
+[assembly: Guid("5df9e1bc-73c5-4744-82f9-cd11f85661b8")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 

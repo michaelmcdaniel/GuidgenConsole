@@ -6,3 +6,4 @@
 /source/obj
 *.suo
 *.user
+/source/mcdaniel.codesign.snk

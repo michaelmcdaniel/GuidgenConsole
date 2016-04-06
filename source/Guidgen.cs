@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace GuidGen
@@ -59,8 +60,8 @@ namespace GuidGen
 		/// <param name="upcase">Whether to uppercase the output values</param>
 		private static void WriteGuids(string type, string format, int count, bool upcase)
 		{
-			if (type == null) type = System.Configuration.ConfigurationManager.AppSettings["default:guid:type"]??"g";
-			if (format == null) format = System.Configuration.ConfigurationManager.AppSettings["default:output:format"]??"D";
+			if (string.IsNullOrEmpty(type)) type = System.Configuration.ConfigurationManager.AppSettings["default:guid:type"]??"g";
+			if (string.IsNullOrEmpty(format)) format = System.Configuration.ConfigurationManager.AppSettings["default:output:format"]??"D";
 
 			// validate the given type of guids to output
 			if (!GuidFormats.IsValid(format)) { WriteHelp("Format Not Found: " + type); return; }
@@ -165,45 +166,18 @@ namespace GuidGen
 		private static void WriteHelp(string error="")
 		{
 			string type = (System.Configuration.ConfigurationManager.AppSettings["default:guid:type"]??"g").ToUpper();
-			string format = (System.Configuration.ConfigurationManager.AppSettings["default:output:format"]??"D").ToUpper();
 
 			string output = string.IsNullOrEmpty(error)?"\r\n":(error+"\r\n");
-			output += "usage: GuidGen.exe [N|D|P|B|C|CP|H|HC#|HVB|HLDAP|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]\r\n";
+			output += "usage: GuidGen.exe [";
+			output += string.Join("|", (from f in GuidFormats.AvailableFormats select f.Key));
+			output += "] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]\r\n";
+			output += "\r\n";
 			output += " Output Formats:\r\n";
-			output += "  N: 32 digits " + (format=="N"?"(DEFAULT)":"") + "\r\n";
-			output += "   87654321dcbafe1054326789abcdef01\r\n";
-			output += "  D: 32 digits separated by hyphens " + (format=="D"?"(DEFAULT)":"") + "\r\n";
-			output += "   00000000-0000-0000-0000-000000000000\r\n";
-			output += "  P: 32 digits separated by hyphens, enclosed in parentheses " + (format=="P"?"(DEFAULT)":"") + "\r\n";
-			output += "   {00000000-0000-0000-0000-000000000000}\r\n";
-			output += "  B: 32 digits separated by hyphens, enclosed in brackets " + (format=="B"?"(DEFAULT)":"") + "\r\n";
-			output += "   [00000000-0000-0000-0000-000000000000]\r\n";
-			output += "  C: c format " + (format=="C"?"(DEFAULT)":"") + "\r\n";
-			output += "   0x00000000,0x0000,0x0000,0x0000,0x00,0x00,0x00,0x00,0x00,0x00\r\n";
-			output += "  CP: c format, enclosed in parentheses " + (format=="CP"?"(DEFAULT)":"") + "\r\n";
-			output += "   {0x00000000,0x0000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00}}\r\n";
-			output += "  GUID: c format, enclosed in parentheses " + (format=="GUID"?"(DEFAULT)":"") + "\r\n";
-			output += "   static const GUID <<name>> = [CP FORMAT];\r\n";
-			output += "  DEFINE_GUID: c format, enclosed in parentheses " + (format=="DEFINE_GUID"?"(DEFAULT)":"") + "\r\n";
-			output += "   DEFINE_GUID(<<name>>, [C FORMAT])\r\n";
-			output += "  OLECREATE: c format, enclosed in parentheses " + (format=="OLECREATE"?"(DEFAULT)":"") + "\r\n";
-			output += "   IMPLEMENT_OLECREATE(<<class>>, <<external_name>>, [C FORMAT])\r\n";
-			output += "  H: HEX byte array " + (format=="H"?"(DEFAULT)":"") + "\r\n";
-			output += "   0123456789abcdef0123456789abcdef\r\n";
-			output += "  HC#: CSharp Hex byte array " + (format=="HC#"?"(DEFAULT)":"") + "\r\n";
-			output += "   0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef,0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef\r\n";
-			output += "  HVB: VB Hex byte array " + (format=="HVB"?"(DEFAULT)":"") + "\r\n";
-			output += "   &H01,&H23,&H45,&H67,&H89,&Hab,&Hcd,&Hef,&H01,&H23,&H45,&H67,&H89,&Hab,&Hcd,&Hef\r\n";
-			output += "  HLDAP: Hex byte array in ldap query form " + (format=="HLDAP"?"(DEFAULT)":"") + "\r\n";
-			output += "   \\\\01\\\\23\\\\45\\\\67\\\\89\\\\ab\\\\cd\\\\ef\\\\01\\\\23\\\\45\\\\67\\\\89\\\\ab\\\\cd\\\\ef\r\n";
-			output += "  ORACLE: ORACLE Hex byte array " + (format=="ORACLE"?"(DEFAULT)":"") + "\r\n";
-			output += "   8967452301cdab01ef23456789abcdef\r\n";
-			output += "  ORACLE_HEXTORAW: ORACLE Hex byte array with declaration " + (format=="ORACLE_HEXTORAW"?"(DEFAULT)":"") + "\r\n";
-			output += "   HEXTORAW('8967452301cdab01ef23456789abcdef')\r\n";
-			output += "  BASE64:  " + (format=="BASE64"?"(DEFAULT)":"") + "\r\n";
-			output += "   AAAAAAAAAAAAAAAAAAAAAA==\r\n";
-			output += "  BASE64C: combine bytes to single base64 string " + (format=="BASE64C"?"(DEFAULT)":"") + "\r\n";
-			output += "   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=\r\n";
+			foreach(var format in GuidFormats.AvailableFormats)
+			{
+				output += format.ToString();
+			}
+			output += "\r\n";
 			output += " Type of GUID to create\r\n";
 			output += "  G: New Guid " + (type=="G"?"(DEFAULT)":"") + "\r\n";
 			output += "  Z: Zero Guid" + (type=="Z"?"(DEFAULT)":"") + "\r\n";
