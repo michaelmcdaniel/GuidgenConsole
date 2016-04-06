@@ -12,3 +12,4 @@
 /source/GuidGen.Console/obj
 /source/GuidGen.UnitTesting/bin
 /source/GuidGen.UnitTesting/obj
+*.snk

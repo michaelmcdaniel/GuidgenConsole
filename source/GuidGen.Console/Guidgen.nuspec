@@ -7,7 +7,10 @@
 		<authors>Michael McDaniel</authors>
 		<owners>Michael McDaniel</owners>
 		<summary>Generate/Find/Replace GUIDS on the windows command line.</summary>
-		<description>Guidgen console is a command line application that generates X number of guids in the format you want - pasting them to the clipboard - if you wish. But that's not all! It also allows pipe usage to find and replace GUIDs or just run in the background as a reformatter.  Supports Zero Guids, Sequential Guids, and plain vanilla Guids.  </description>
+		<description>
+			Guidgen console is a command line application that generates X number of guids in the format you want - pasting them to the clipboard - if you wish. But that's not all! It also allows pipe usage to find and replace GUIDs or just run in the background as a reformatter.  Supports Zero Guids, Sequential Guids, and plain vanilla Guids.
+			usage: GuidGen.exe [/?] [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORACLE|ORACLE_HEXTORAW|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]
+		</description>
 		<projectUrl>https://github.com/michaelmcdaniel/GuidgenConsole</projectUrl>
 		<tags>GUID uuid console</tags>
 		<licenseUrl>https://en.wikipedia.org/wiki/WTFPL</licenseUrl>
