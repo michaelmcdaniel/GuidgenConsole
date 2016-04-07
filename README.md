@@ -103,12 +103,27 @@ PS C:\> choco install guidgen-console
 </pre></code>
 
 <h4>What dependencies does it have?</h4>
-The latest version is built against the .NET Framework version 4.6.1.
+The latest version is built against the .NET Framework version 4.6.1.<br/>
 available at: <a href="http://go.microsoft.com/fwlink/?LinkId=671729">http://go.microsoft.com/fwlink/?LinkId=671729</a>
 
 <h4>Where do I install it?</h4>
-Install it where ever you want.  I usually drop it into c:\windows\system32 so I can run it from anywhere.  
+Install it where ever you want.  I usually drop it into c:\windows\system32 so I can run it from anywhere.<br/>
 If you used chocolatey, then it should be in %ALLUSERSPROFILE%\chocolatey\bin
+
+<h4>Can I change the defaults?</h4>
+<b>Yes!</b> Add (or change) <i>guidgen.exe.config</i>
+<code><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;configuration&gt;
+	&lt;appSettings&gt;
+		&lt;add key=&quot;default:output:format&quot; value=&quot;D&quot; /&gt;
+		&lt;add key=&quot;default:guid:type&quot; value=&quot;G&quot; /&gt;
+		&lt;add key=&quot;default:example&quot; value=&quot;01020304-0506-0708-090a-0b0c0d0e0f10&quot; /&gt;
+	&lt;/appSettings&gt;
+	&lt;startup&gt;
+		&lt;supportedRuntime version=&quot;v4.0&quot; sku=&quot;.NETFramework,Version=v4.6.1&quot; /&gt;
+	&lt;/startup&gt;
+&lt;/configuration&gt;</pre></code>
+
 
 <h4>How do I add it to Visual Studio Tools?</h4>
  Goto: Tools > External Tools<br/>
