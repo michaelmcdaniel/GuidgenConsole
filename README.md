@@ -97,7 +97,7 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
    then enter guids and then type "quit" to find/replace and end.
 </pre>	
 <h4>Where can I get it?</h4>
-Latest binaries in the binaries folder of the project or use powershell and chocolately!
+Latest binaries in the binaries folder of the project or use powershell and <a href="https://chocolatey.org">chocolatey</a>!
 <code><pre>
 PS C:\> choco install guidgen-console
 </pre></code>
