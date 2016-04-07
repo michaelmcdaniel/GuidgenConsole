@@ -39,40 +39,41 @@ c:\> guidgen.exe /?
 
 usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORACLE|ORACLE_HEXTORAW|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]<br/>
 <h6>Output Formats:</h6>
-  <b>N</b>: 32 digits
-      <i>87654321dcbafe1054326789abcdef01</i>
-  <b>D</b>: 32 digits separated by hyphens (DEFAULT)
-      <i>00000000-0000-0000-0000-000000000000</i>
-  <b>P</b>: 32 digits separated by hyphens, enclosed in parentheses
-      <i>{00000000-0000-0000-0000-000000000000}</i>
-  <b>B</b>: 32 digits separated by hyphens, enclosed in brackets
-      <i>[00000000-0000-0000-0000-000000000000]</i>
-  <b>C</b>: c format
-      <i>0x00000000,0x0000,0x0000,0x0000,0x00,0x00,0x00,0x00,0x00,0x00</i>
-  <b>CP</b>: c format, enclosed in parentheses
-      <i>{0x00000000,0x0000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00}}</i>
-  <b>GUID</b>: c format, enclosed in parentheses
-      <i>static const GUID <> = [CP FORMAT];</i>
-  <b>DEFINE_GUID</b>: c format, enclosed in parentheses
-      <i>DEFINE_GUID(<>, [C FORMAT])</i>
-  <b>OLECREATE</b>: c format, enclosed in parentheses
-      <i>IMPLEMENT_OLECREATE(<>, <>, [C FORMAT])</i>
-  <b>H</b>: HEX byte array
-      <i>0123456789abcdef0123456789abcdef</i>
-  <b>HC#</b>: CSharp Hex byte array
-      <i>0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef,0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef</i>
-  <b>HVB</b>: VB Hex byte array
-      <i>&H01,&H23,&H45,&H67,&H89,&Hab,&Hcd,&Hef,&H01,&H23,&H45,&H67,&H89,&Hab,&Hcd,&Hef</i>
-  <b>HLDAP</b>: Hex byte array in ldap query form
-      <i>\\01\\23\\45\\67\\89\\ab\\cd\\ef\\01\\23\\45\\67\\89\\ab\\cd\\ef</i>
-  <b>ORACLE</b>: ORACLE Hex byte array
-      <i>8967452301cdab01ef23456789abcdef</i>
-  <b>ORACLE_HEXTORAW</b>: ORACLE Hex byte array with declaration
-      <i>HEXTORAW('8967452301cdab01ef23456789abcdef')</i>
-  <b>BASE64</b>:
-      <i>AAAAAAAAAAAAAAAAAAAAAA==</i>
-  <b>BASE64C</b>: combine bytes to single base64 string
-      <i>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</i>
+   <b>N</b>: 32 digits
+	<i>0102030405060708090a0b0c0d0e0f10</i>
+   <b>D</b>: 32 digits separated by hyphens (DEFAULT)
+	<i>01020304-0506-0708-090a-0b0c0d0e0f10</i>
+   <b>P</b>: 32 digits separated by hyphens, enclosed in (curly) braces
+	<i>{01020304-0506-0708-090a-0b0c0d0e0f10}</i>
+   <b>B</b>: 32 digits separated by hyphens, enclosed in brackets
+	<i>[01020304-0506-0708-090a-0b0c0d0e0f10]</i>
+   <b>C</b>: c format
+	<i>0x01020304,0x0506,0x0708,0x090a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10</i>
+   <b>CP</b>: c format, enclosed in (curly) braces
+	<i>{0x01020304,0x0506,0x0708,0x090a,{0x0b,0x0c,0x0d,0x0e,0x0f,0x10}}</i>
+   <b>GUID</b>: c format, enclosed in (curly) braces
+	<i>static const GUID &lt;&lt;name&gt;&gt; = 0x01020304,0x0506,0x0708,0x090a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10;</i>
+   <b>DEFINE_GUID</b>: c format, enclosed in (curly) braces
+	<i>DEFINE_GUID(&lt;&lt;name&gt;&gt;,0x01020304,0x0506,0x0708,0x090a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10)</i>
+   <b>OLECREATE</b>: c format, enclosed in (curly) braces
+	<i>IMPLEMENT_OLECREATE(&lt;&lt;class>>,&lt;&lt;external_name&gt;&gt;,0x01020304,0x0506,0x0708,0x090a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10)</i>
+   <b>H</b>: HEX byte array
+	<i>0403020106050807090a0b0c0d0e0f10</i>
+   <b>HC#</b>: CSharp Hex byte array
+	<i> 0x04,0x03,0x02,0x01,0x06,0x05,0x08,0x07,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10</i>
+   <b>HVB</b>: VB Hex byte array
+	<i>&amp;H04,&amp;H03,&amp;H02,&amp;H01,&amp;H06,&amp;H05,&amp;H08,&amp;H07,&amp;H09,&amp;H0a,&amp;H0b,&amp;H0c,&amp;H0d,&amp;H0e,&amp;H0f,&amp;H10</i>
+   <b>HLDAP</b>: Hex byte array in ldap query form
+	<i>\\04\\03\\02\\01\\06\\05\\08\\07\\09\\0a\\0b\\0c\\0d\\0e\\0f\\10</i>
+   <b>ORACLE</b>: ORACLE Hex byte array
+	<i>04030201-0605-0807-090a-0b0c0d0e0f10</i>
+   <b>ORACLE_HEXTORAW</b>: ORACLE Hex byte array with declaration
+	<i>HEXTORAW('04030201-0605-0807-090a-0b0c0d0e0f10')</i>
+   <b>BASE64</b>:
+	<i>BAMCAQYFCAcJCgsMDQ4PEA==</i>
+   <b>BASE64C</b>: combine bytes to single base64 string
+	<i>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</i>
+
 <h6>Type of GUID to create</h6>
   <b>G</b>: New Guid (default)
   <b>Z</b>: Zero Guid
@@ -98,12 +99,16 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
 <h4>Where can I get it?</h4>
 Latest binaries in the binaries folder of the project or use powershell and chocolately!
 <code><pre>
-choco install guidgen-console -version 2.0.0.2
+PS C:\> choco install guidgen-console
 </pre></code>
 
-<h4>How or where do I install it?</h4>
- Install it where ever you want. I usually drop it into c:\windows so I can run it from anywhere.<br/><br/>
- Guidgen requires the .NET Framework 4.6.1 available at: <a href="http://go.microsoft.com/fwlink/?LinkId=671729">http://go.microsoft.com/fwlink/?LinkId=671729</a>
+<h4>What dependencies does it have?</h4>
+The latest version is built against the .NET Framework version 4.6.1.
+available at: <a href="http://go.microsoft.com/fwlink/?LinkId=671729">http://go.microsoft.com/fwlink/?LinkId=671729</a>
+
+<h4>Where do I install it?</h4>
+Install it where ever you want.  I usually drop it into c:\windows\system32 so I can run it from anywhere.  
+If you used chocolatey, then it should be in %ALLUSERSPROFILE%\chocolatey\bin
 
 <h4>How do I add it to Visual Studio Tools?</h4>
  Goto: Tools > External Tools<br/>
