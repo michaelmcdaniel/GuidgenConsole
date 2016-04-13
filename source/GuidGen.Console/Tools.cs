@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.InteropServices;
 
 namespace GuidGen
 {
@@ -52,7 +50,7 @@ namespace GuidGen
 			return defaultValue;
 		}
 
-		[System.Runtime.InteropServices.DllImport("rpcrt4.dll", SetLastError = true)]
+		[DllImport("rpcrt4.dll", SetLastError = true)]
 		private static extern int UuidCreateSequential(out Guid guid);
 
 		/// <summary>
@@ -65,5 +63,98 @@ namespace GuidGen
 			Guid g;
 			return (UuidCreateSequential(out g) == RPC_S_OK) ? g : Guid.NewGuid();
 		}
+
+		#region WIN32 clipboard imports 
+		[DllImport("user32.dll", SetLastError = true)]
+		private static extern bool OpenClipboard(IntPtr hWndNewOwner);
+		[DllImport("user32.dll")]
+		private static extern bool CloseClipboard();
+		[DllImport("user32.dll", SetLastError = true)]
+		private static extern bool SetClipboardData(uint uFormat, IntPtr data);
+		[DllImport("user32.dll", SetLastError = true)]
+        private static extern IntPtr GetClipboardData(uint uFormat);
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool IsClipboardFormatAvailable(uint format);
+		[DllImport("kernel32.dll")]
+        private static extern IntPtr GlobalLock(IntPtr hMem);
+        [DllImport("kernel32.dll")]
+        private static extern bool GlobalUnlock(IntPtr hMem);
+		#endregion
+
+		private const uint CF_UNICODETEXT = 13;
+		private const uint CF_TEXT = 1;
+
+		/// <summary>
+		/// Sets text to clipboard as unicode
+		/// </summary>
+		/// <remarks>Uses win32 (because clipboard missing in clrcore - version rc1)</remarks>
+		/// <param name="text">The text to put on the clipboard</param>
+		public static bool SetClipboard(string text)
+		{
+			bool retVal = false;
+			try
+			{
+				if (!OpenClipboard(IntPtr.Zero))
+				{
+					
+					return retVal;
+				}
+				IntPtr ptr = IntPtr.Zero;
+				try
+				{
+					ptr = Marshal.StringToHGlobalUni(text);
+					retVal = SetClipboardData(CF_UNICODETEXT, ptr);
+				}
+				finally
+				{
+					Marshal.FreeHGlobal(ptr);
+					CloseClipboard();
+				}
+			}
+			catch(Exception ex)
+			{
+				Console.WriteLine("Error copying data to clipboard: " + ex.Message);
+			}
+			return retVal;
+		}
+
+		/// <summary>
+		/// gets text (unicode or ansi) from clipboard
+		/// </summary>
+		/// <remarks>Uses win32 (because clipboard missing in clrcore - version rc1)</remarks>
+		/// <returns>text if string otherwise null</returns>
+		public static string GetClipboard()
+		{
+			string retVal = null;
+			if (!IsClipboardFormatAvailable(CF_UNICODETEXT)) return retVal;
+			try
+			{
+				if (!OpenClipboard(IntPtr.Zero)) return retVal;
+				try
+				{
+				var hGlobal = GetClipboardData(CF_UNICODETEXT);
+				if (hGlobal != IntPtr.Zero)
+				{
+					var str = GlobalLock(hGlobal);
+					if (str != IntPtr.Zero)
+					{
+						retVal = Marshal.PtrToStringUni(str);
+						GlobalUnlock(str);
+					}
+				}
+				}
+				finally
+				{
+					CloseClipboard();
+				}
+			}
+			catch(Exception ex)
+			{
+				Console.WriteLine("Error copying data to clipboard: " + ex.Message);
+			}
+
+            return retVal;
+		}
+
 	}
 }

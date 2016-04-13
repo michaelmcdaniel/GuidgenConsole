@@ -1,7 +1,8 @@
 using System;
-using System.Collections.Generic;
+#if !NET2_0 && !NET3_5
 using System.Linq;
-using System.Text.RegularExpressions;
+#endif
+using System.Collections.Generic;
 
 namespace GuidGen
 {
@@ -40,9 +41,9 @@ namespace GuidGen
 				else if (Cmdline.Has("z")) type = "z";
 
 				// process the requested action
-				if (Cmdline.Has("find")) FindGuids(format, upcase);
-				else if (Cmdline.Has("replace")) ReplaceGuids(false, type, format, count, upcase);
+				if (Cmdline.Has("replace")) ReplaceGuids(false, type, format, count, upcase);
 				else if (Cmdline.Has("replacebyline")) ReplaceGuids(true, type, format, count, upcase);
+				else if (Cmdline.Has("find")) FindGuids(format, upcase);
 				else WriteGuids(type, format, count, upcase);
 
 			}
@@ -60,16 +61,20 @@ namespace GuidGen
 		/// <param name="upcase">Whether to uppercase the output values</param>
 		private static void WriteGuids(string type, string format, int count, bool upcase)
 		{
+#if DNX451
+			if (string.IsNullOrEmpty(type)) type = "g";
+			if (string.IsNullOrEmpty(format)) format = "D";
+#else
 			if (string.IsNullOrEmpty(type)) type = System.Configuration.ConfigurationManager.AppSettings["default:guid:type"]??"g";
 			if (string.IsNullOrEmpty(format)) format = System.Configuration.ConfigurationManager.AppSettings["default:output:format"]??"D";
-
+#endif
 			// validate the given type of guids to output
-			if (!GuidFormats.IsValid(format)) { WriteHelp("Format Not Found: " + type); return; }
+			if (!GuidFormats.IsValid(format)) { WriteHelp("Format Not Found: " + format); return; }
 				
 			Guider guider = Guider.FromType(type, Guider.NewGuid);
 			guider.Count = Math.Max(1, count);
 			string output = GuidFormats.Format(format, guider, upcase, count>1);
-			if (!Cmdline.Has("nocopy")) System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.Text, output);
+			if (!Cmdline.Has("nocopy")) Tools.SetClipboard(output);
 			System.Diagnostics.Debug.WriteLine(output);
 			Console.WriteLine(output);
 		}
@@ -84,11 +89,15 @@ namespace GuidGen
 			System.IO.TextReader retVal;
 			if (Cmdline.Has("guid")) // user given guid on commandline
 			{
+#if NET2_0 || NET3_5
+				retVal = new System.IO.StringReader(string.Join("\r\n", Cmdline.Get("guid").Values.ToArray()));
+#else
 				retVal = new System.IO.StringReader(string.Join("\r\n", Cmdline.Get("guid").Values));
+#endif
 			}
 			else if (Cmdline.Has("clipboard")) // gets guids from clipboard
 			{
-				retVal = new System.IO.StringReader(System.Windows.Forms.Clipboard.GetText());
+				retVal = new System.IO.StringReader(Tools.GetClipboard()??"");
 			}
 			else if (ConsoleEx.InputRedirected && Console.In.Peek() != -1) // gets data via pipe syntax
 			{
@@ -96,7 +105,7 @@ namespace GuidGen
 			}
 			else // reformatter - waits for input from user typing/pasting
 			{
-				Console.Write("Type \"quit\" to quit");
+				Console.WriteLine("Type \"quit\" to quit");
 				retVal = new ConsoleExitStream();
 			}
 			return retVal;
@@ -109,23 +118,19 @@ namespace GuidGen
 		/// <param name="upcase">whether to uppercase the output format</param>
 		private static void FindGuids(string format, bool upcase)
 		{
-			List<Found> items = new List<Found>();
-			GuidSearcher.Search(Cmdline.Get("find").Value, GetInputStream(), items);
-			List<Guid> guids = new List<Guid>();
-			foreach(Found item in items)
+			string findFormat = Cmdline.Get("find").Value;
+			bool outputWhere = Cmdline.Has("l");
+			IGuidFormatter formatter = GuidFormats.GetFormatter(format);
+			bool outputFormattedValue = (formatter != null);
+			System.Text.StringBuilder toClipboard = (Cmdline.Has("copy"))?new System.Text.StringBuilder():null;
+			foreach(Found found in GuidFormats.Find(GetInputStream(), findFormat))
 			{
-				guids.AddRange(item.Guids);
-				Console.WriteLine(((Cmdline.Has("l"))?((item.Line+1).ToString()+". "):"") + item.Match);
-				if (format != null)
-				{
-					foreach (Guid g in item.Guids)
-					{
-						string formatted = GuidFormats.Format(format, g, upcase, true);
-						if (formatted != item.Match) Console.WriteLine("\t" + formatted);
-					}
-				}
+				string output = found.ToString(outputWhere, formatter, upcase);
+				Console.WriteLine(output);
+				if (toClipboard != null) toClipboard.AppendLine(output);
 			}
-			if (Cmdline.Has("copy")) System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.Text, GuidFormats.Format(format, guids, upcase, true));
+
+			if (toClipboard != null) Tools.SetClipboard(toClipboard.ToString());
 		}
 
 		/// <summary>
@@ -138,38 +143,57 @@ namespace GuidGen
 		private static void ReplaceGuids(bool byLine, string type, string format, int count, bool upcase)
 		{
 			// validate the given type of guids to output
-			if (type != null && !GuidFormats.IsValid(type)) { WriteHelp("Format Not Found: " + type); return; }
-
 			Guider guider = Guider.FromType(type, Guider.AsCurrent());
 			guider.Count = count;
-			Dictionary<Guid, Guid> replacements = new Dictionary<Guid,Guid>();
+
+			string findFormat = Cmdline.Get("find").Value;
+			if (string.IsNullOrEmpty(findFormat)) findFormat = Cmdline.Get(byLine?"replacebyline":"replace").Value;
+
 			if (byLine)
 			{
-				// This method is used as a 
-				Console.WriteLine(".");
-				DefaultSearch.Replace(GetInputStream(), Console.Out, guider, replacements, format, upcase, Cmdline.Has("copy"));
+				System.Text.StringBuilder toClipboard = (Cmdline.Get("copy").Value.Equals("full"))?new System.Text.StringBuilder():null;
+				System.IO.TextWriter tw = (Cmdline.Has("nocopy"))?Console.Out:new ConsoleClipboardOut();
+				foreach(Replacement r in GuidFormats.ReplaceByLine(GetInputStream(), tw, findFormat, format, guider, upcase, false))
+				{
+					if (toClipboard != null) toClipboard.AppendLine(r.ReplacedByText);
+					System.Diagnostics.Debug.WriteLine(r.ToString());
+				}
+				if (toClipboard != null) Tools.SetClipboard(toClipboard.ToString());
 			}
 			else
 			{
 				System.Text.StringBuilder output = new System.Text.StringBuilder();
 				using (System.IO.TextWriter tw = new System.IO.StringWriter(output))
 				{
-					DefaultSearch.Replace(GetInputStream(), tw, guider, replacements, format, upcase);
+					foreach(Replacement r in GuidFormats.Replace(GetInputStream(), tw, findFormat, format, guider, upcase, true))
+					{
+						System.Diagnostics.Debug.WriteLine(r.ToString());
+					}
 				}
 
 				Console.WriteLine(output.ToString());
-				if (Cmdline.Has("copy")) System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.Text,output.ToString());
+				if (Cmdline.Has("copy")) Tools.SetClipboard(output.ToString());
 			}
 		}
 
 
 		private static void WriteHelp(string error="")
 		{
+#if DNX451
+			string type = "g".ToUpper();
+#else
 			string type = (System.Configuration.ConfigurationManager.AppSettings["default:guid:type"]??"g").ToUpper();
+#endif
 
 			string output = string.IsNullOrEmpty(error)?"\r\n":(error+"\r\n");
 			output += "usage: GuidGen.exe [";
+#if NET2_0 || NET3_5
+			List<string> keys = new List<string>();
+			foreach(IGuidFormatter f in GuidFormats.AvailableFormats) { keys.Add(f.Key); }
+			output += string.Join("|", keys.ToArray());
+#else
 			output += string.Join("|", (from f in GuidFormats.AvailableFormats select f.Key));
+#endif
 			output += "] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]\r\n";
 			output += "\r\n";
 			output += " Output Formats:\r\n";

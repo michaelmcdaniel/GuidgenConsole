@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GuidGen
 {
@@ -14,7 +11,7 @@ namespace GuidGen
 		public ConsoleExitStream()
 		{
 		}
-
+#if NET2_0 || NET3_5 || NET4_0 || NET4_5 || NET4_6
 		public override void Close()
 		{
 		}
@@ -23,7 +20,7 @@ namespace GuidGen
 		{
 			return base.CreateObjRef(requestedType);
 		}
-
+#endif
 		protected override void Dispose(bool disposing)
 		{
 		}

@@ -4,9 +4,11 @@
 
 *.suo
 *.user
-/UnitTesting/GuidGen.UnitTesting/obj/Release
+/source/.vs
 /source/GuidGen.Console/bin
 /source/GuidGen.Console/obj
 /source/GuidGen.UnitTesting/bin
 /source/GuidGen.UnitTesting/obj
+/source/TestResults
 *.snk
+/Binaries/tools/copy_release.bat

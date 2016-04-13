@@ -4,7 +4,7 @@
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5A787308-FD38-4A36-BDE8-217FBD21038A}</ProjectGuid>
+    <ProjectGuid>{688789CC-8F35-4E73-A4B6-5A02B31E332B}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ApplicationIcon>App.ico</ApplicationIcon>
@@ -25,7 +25,7 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <OldToolsVersion>2.0</OldToolsVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile>
@@ -44,19 +44,19 @@
     <ErrorReportUrl>http://mcdaniel.ws/send/note</ErrorReportUrl>
     <ProductName>Guidgen Console</ProductName>
     <PublisherName>Michael McDaniel</PublisherName>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\dotNet2_0\Debug\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET2_0</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
@@ -76,13 +76,13 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\dotNet2_0\Release\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET2_0</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <DebugSymbols>false</DebugSymbols>
@@ -114,31 +114,35 @@
       <Name>System</Name>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseGuidFormat.cs" />
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Cmdline.cs" />
+    <Compile Include="ConsoleClipboardOut.cs" />
     <Compile Include="ConsoleEx.cs" />
     <Compile Include="ConsoleExitStream.cs" />
+    <Compile Include="Formats\Base64CombinedFormat.cs" />
+    <Compile Include="Formats\Base64GuidFormat.cs" />
+    <Compile Include="Formats\BaseGuidFormat.cs" />
+    <Compile Include="Formats\BaseGuidSearchFormat.cs" />
+    <Compile Include="Formats\GuidFormat.cs" />
+    <Compile Include="Formats\Int32OutputFormat.cs" />
+    <Compile Include="Formats\Int64OutputFormat.cs" />
+    <Compile Include="Formats\IPAddressGuidFormat.cs" />
+    <Compile Include="Formats\SearchFormat.cs" />
+    <Compile Include="Formats\VersionGuidFormat.cs" />
     <Compile Include="Found.cs" />
-    <Compile Include="Base64GuidFormat.cs" />
     <Compile Include="Guider.cs" />
-    <Compile Include="GuidFormat.cs" />
     <Compile Include="GuidFormats.cs" />
-    <Compile Include="GuidSearcher.cs" />
-    <Compile Include="DefaultSearch.cs" />
     <Compile Include="IGuidFormatter.cs" />
+    <Compile Include="IGuidSearcher.cs" />
+    <Compile Include="IValid.cs" />
+    <Compile Include="Replacement.cs" />
     <Compile Include="Tools.cs" />
     <Content Include="App.ico" />
-    <Compile Include="AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Guidgen.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Content Include="logo.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -163,14 +167,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <Content Include="Guidgen.nuspec">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="mcdaniel.codesign.snk" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <None Include="mcdaniel.codesign.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

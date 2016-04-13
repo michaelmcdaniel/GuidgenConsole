@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GuidGen
 {
@@ -10,24 +8,35 @@ namespace GuidGen
 	/// </summary>
 	public class Guider : IEnumerator<Guid>
 	{
-
+#if NET2_0
+		public delegate Guid CreatorFunc();
+		private CreatorFunc _Creator = null;
+#else
 		private Func<Guid> _Creator = null;
+#endif
 		private int _Count = -1;
 		private int _Index = 0;
 		private Guid _Current = Guid.Empty;
 
-		public Guider(int count = 1)
+		public Guider(int count = -1)
 		{
 			_Creator = delegate() { return _Current; };
 			_Count = count;
 		}
 
+#if NET2_0
+		public Guider(CreatorFunc creator, int count=-1)
+		{
+			_Creator = creator;
+			_Count = count;
+		}
+#else
 		public Guider(Func<Guid> creator, int count=1)
 		{
 			_Creator = creator;
 			_Count = count;
 		}
-
+#endif
 
 		public IEnumerator<Guid> GetEnumerator()
 		{
