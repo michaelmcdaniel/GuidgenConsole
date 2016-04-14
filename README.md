@@ -107,7 +107,7 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
    then enter guids and then type "quit" to find/replace and end.
 </pre>	
 <h4>Where can I get it?</h4>
-Latest binaries in the binaries folder of the project or use powershell and <a href="https://chocolatey.org">chocolatey</a>!  <i>v2.0.0.3 - Chocolately install will download the binary from github and try to install the matching .NET version</i>
+Latest binaries in the binaries folder of the project or use powershell and <a href="https://chocolatey.org">chocolatey</a>!  <i>v2.0.0.3 - Chocolately install will download the binary from github and try to install the highest matching .NET version.  If no matching versions, you get the latest version (currently 4.6.1).</i>
 <code><pre>
 PS C:\> choco install guidgen-console
 </pre></code>
