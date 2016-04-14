@@ -25,6 +25,7 @@ usage: GuidGen.exe [/?]
     <docsUrl>https://github.com/michaelmcdaniel/GuidgenConsole</docsUrl>
     <bugTrackerUrl>https://github.com/michaelmcdaniel/GuidgenConsole/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/michaelmcdaniel/GuidgenConsole/tree/master/source</projectSourceUrl>
+	<packageSourceUrl>https://cdn.rawgit.com/michaelmcdaniel/GuidgenConsole/master/Binaries/Chocolatey-Packages</packageSourceUrl>
   </metadata>
   <files>
     <file src="tools\chocolatey*.ps1" target="tools\"/>
