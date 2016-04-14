@@ -8,8 +8,9 @@
     <owners>Michael McDaniel</owners>
     <summary>Generate/Find/Replace GUIDS on the windows command line.</summary>
     <description>
-
-Guidgen console is a command line application that generates X number of guids in the format you want - pasting them to the clipboard - if you wish. But that's not all! It also allows pipe usage to find and replace GUIDs or just run in the background as a reformatter.  Supports Zero Guids, Sequential Guids, and plain vanilla Guids.
+Guidgen console is a command line application that generates X number of guids in the format you want - pasting them to the clipboard - if you wish. 
+But that's not all! It also allows pipe usage to find and replace GUIDs or just run in the background as a reformatter.  
+Supports zero guids, sequential guids, and plain vanilla guids.
 
 usage: GuidGen.exe [/?] 
 [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORACLE|ORACLE_HEXTORAW|IP|VERSION|INT32|INT64|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/copy] [/n (number)] [/u]
@@ -24,10 +25,6 @@ usage: GuidGen.exe [/?]
     <docsUrl>https://github.com/michaelmcdaniel/GuidgenConsole</docsUrl>
     <bugTrackerUrl>https://github.com/michaelmcdaniel/GuidgenConsole/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/michaelmcdaniel/GuidgenConsole/tree/master/source</projectSourceUrl>
-<dependencies>
-  <!-- Chocolatey 0.9.9 required in order to access the chocolateyPackageName and chocolateyPackageVersion environment variables -->
-  <dependency id="chocolatey" version="0.9.9" />
-</dependencies>
   </metadata>
   <files>
     <file src="tools\chocolatey*.ps1" target="tools\"/>

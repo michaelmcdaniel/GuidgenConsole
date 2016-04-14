@@ -12,3 +12,4 @@
 /source/TestResults
 *.snk
 /Binaries/tools/copy_release.bat
+/Binaries/tools/SetVersion.ps1

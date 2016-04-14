@@ -18,6 +18,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".NET Versions", ".NET Versi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Testing", "Unit Testing", "{49B3961F-1689-49B7-8DAB-56BAE4229587}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "chocolatey", "chocolatey", "{0AB16C4A-8C7F-429C-91FB-74BB56C1F169}"
+	ProjectSection(SolutionItems) = preProject
+		Choco.Installer\chocolatey.guidgen-console.nuspec = Choco.Installer\chocolatey.guidgen-console.nuspec
+		Choco.Installer\make-chocolatey.ps1 = Choco.Installer\make-chocolatey.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{A12C741E-EF51-4E88-ABE3-BB8FBDBD8C0A}"
+	ProjectSection(SolutionItems) = preProject
+		Choco.Installer\tools\chocolateyInstall.ps1 = Choco.Installer\tools\chocolateyInstall.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,5 +66,6 @@ Global
 		{2A816F94-88C5-4ADF-8EAD-E1DCCEF1C27E} = {A1520E2C-35FE-48EF-BCDA-83F8661061F4}
 		{B5A2069D-C1DF-479C-BBF7-E65FA626E888} = {A1520E2C-35FE-48EF-BCDA-83F8661061F4}
 		{6B2AAED2-1A00-4C3A-AEEF-1E7D26946E37} = {A1520E2C-35FE-48EF-BCDA-83F8661061F4}
+		{A12C741E-EF51-4E88-ABE3-BB8FBDBD8C0A} = {0AB16C4A-8C7F-429C-91FB-74BB56C1F169}
 	EndGlobalSection
 EndGlobal
