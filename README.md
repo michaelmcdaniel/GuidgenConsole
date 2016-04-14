@@ -69,6 +69,16 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
 	<i>04030201-0605-0807-090a-0b0c0d0e0f10</i>
    <b>ORACLE_HEXTORAW</b>: ORACLE Hex byte array with declaration
 	<i>HEXTORAW('04030201-0605-0807-090a-0b0c0d0e0f10')</i>
+   <b>IP</b>: IP Address format (IPv4/IPv6)
+	<i>403:201:605:807:90a:b0c:d0e:f10</i>
+   <b>Version</b>: Version format (Major.Minor.Build.Revision)
+	<i>16909060.117966086.202050057.269422093</i>
+   <b>Int32</b>: Int32 format (Int32, Int32, Int32, Int32)
+	<i>16909060, 117966086, 202050057, 269422093</i>
+   <b>Int64</b>: Int64format (Int64, Int64)
+	<i>506660481424032516, 1157159078456920585</i>
+   <b>ORACLE_HEXTORAW</b>: ORACLE Hex byte array with declaration
+	<i>HEXTORAW('04030201-0605-0807-090a-0b0c0d0e0f10')</i>
    <b>BASE64</b>:
 	<i>BAMCAQYFCAcJCgsMDQ4PEA==</i>
    <b>BASE64C</b>: combine bytes to single base64 string
@@ -136,5 +146,33 @@ If you used chocolatey, then it should be in %ALLUSERSPROFILE%\chocolatey\bin
   Goto: Tools > Options > Environment > Keyboard <br/>
   Select "Tools.ExternalCommand1" (if you moved it to the top...)<br/>
   Press the key combination. <br/>
-  Click ok. <br/>
-</pre>
+  Click ok.
+
+<h4>Example Usage</h4>
+Generate a guid:
+<pre><code>c:\> guidgen D
+3dbacc0e-940a-4386-bce9-adc285f45ffe</code></pre>
+Generate a upper-cased guid:
+<pre><code>c:\> guidgen D /u
+2EE89794-7759-4425-80DC-126F73264B30</code></pre>
+Generate 3 sequential guids:
+<pre><code>c:\> guidgen D /S /n 3
+21638464-8ef4-11e1-acb0-0024e8359915
+21638465-8ef4-11e1-acb0-0024e8359915
+21638466-8ef4-11e1-acb0-0024e8359915</code></pre>
+Replace given guid by HC# format:
+<pre><code>c:\> guidgen HC# /replace /guid 21638464-8ef4-11e1-acb0-0024e8359915
+0x64,0x84,0x63,0x21,0xf4,0x8e,0xe1,0x11,0xac,0xb0,0x00,0x24,0xe8,0x35,0x99,0x15</code></pre>
+Find Guids (with line numbers):
+<pre><code>c:\> guidgen N /n 3 > guids.txt
+c:\> more guids.txt | guidgen D /find /l
+Ln: 0 Col: 0    aa4a2c8a-37ac-432d-afc2-40f62b1d01a2    aa4a2c8a37ac432dafc240f62b1d01a2
+Ln: 1 Col: 0    70e5d73a-6b06-4b3e-a473-cdbbedf85f61    70e5d73a6b064b3ea473cdbbedf85f61
+Ln: 2 Col: 0    4bae3611-fdc7-4af3-b47a-b36e5fc9d45a    4bae3611fdc74af3b47ab36e5fc9d45a</code></pre>
+Reformat guids:
+<pre><code>c:\> guidgen P /u /replacebyline
+Type "quit" to quit
+&gt; c272825f-79ab-4fcc-b265-e07c488ed8ae
+{C272825F-79AB-4FCC-B265-E07C488ED8AE}
+&gt; quit</code></pre>
+
