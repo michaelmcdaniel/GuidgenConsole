@@ -99,6 +99,10 @@ namespace GuidGen
 			{
 				retVal = new System.IO.StringReader(Tools.GetClipboard()??"");
 			}
+			else if (Cmdline.Has("file"))
+			{
+				retVal = new System.IO.StreamReader(Cmdline.Get("file").Value);
+			}
 			else if (ConsoleEx.InputRedirected && Console.In.Peek() != -1) // gets data via pipe syntax
 			{
 				retVal = Console.In;
@@ -123,11 +127,14 @@ namespace GuidGen
 			IGuidFormatter formatter = GuidFormats.GetFormatter(format);
 			bool outputFormattedValue = (formatter != null);
 			System.Text.StringBuilder toClipboard = (Cmdline.Has("copy"))?new System.Text.StringBuilder():null;
-			foreach(Found found in GuidFormats.Find(GetInputStream(), findFormat))
+			using (System.IO.TextReader inputStream = GetInputStream())
 			{
-				string output = found.ToString(outputWhere, formatter, upcase);
-				Console.WriteLine(output);
-				if (toClipboard != null) toClipboard.AppendLine(output);
+				foreach(Found found in GuidFormats.Find(inputStream, findFormat))
+				{
+					string output = found.ToString(outputWhere, formatter, upcase);
+					Console.WriteLine(output);
+					if (toClipboard != null) toClipboard.AppendLine(output);
+				}
 			}
 
 			if (toClipboard != null) Tools.SetClipboard(toClipboard.ToString());
@@ -148,31 +155,33 @@ namespace GuidGen
 
 			string findFormat = Cmdline.Get("find").Value;
 			if (string.IsNullOrEmpty(findFormat)) findFormat = Cmdline.Get(byLine?"replacebyline":"replace").Value;
-
-			if (byLine)
+			using (System.IO.TextReader inputStream = GetInputStream())
 			{
-				System.Text.StringBuilder toClipboard = (Cmdline.Get("copy").Value.Equals("full"))?new System.Text.StringBuilder():null;
-				System.IO.TextWriter tw = (Cmdline.Has("nocopy"))?Console.Out:new ConsoleClipboardOut();
-				foreach(Replacement r in GuidFormats.ReplaceByLine(GetInputStream(), tw, findFormat, format, guider, upcase, false))
+				if (byLine)
 				{
-					if (toClipboard != null) toClipboard.AppendLine(r.ReplacedByText);
-					System.Diagnostics.Debug.WriteLine(r.ToString());
-				}
-				if (toClipboard != null) Tools.SetClipboard(toClipboard.ToString());
-			}
-			else
-			{
-				System.Text.StringBuilder output = new System.Text.StringBuilder();
-				using (System.IO.TextWriter tw = new System.IO.StringWriter(output))
-				{
-					foreach(Replacement r in GuidFormats.Replace(GetInputStream(), tw, findFormat, format, guider, upcase, true))
+					System.Text.StringBuilder toClipboard = (Cmdline.Get("copy").Value.Equals("full")) ? new System.Text.StringBuilder() : null;
+					System.IO.TextWriter tw = (Cmdline.Has("nocopy")) ? Console.Out : new ConsoleClipboardOut();
+					foreach (Replacement r in GuidFormats.ReplaceByLine(inputStream, tw, findFormat, format, guider, upcase, false))
 					{
+						if (toClipboard != null) toClipboard.AppendLine(r.ReplacedByText);
 						System.Diagnostics.Debug.WriteLine(r.ToString());
 					}
+					if (toClipboard != null) Tools.SetClipboard(toClipboard.ToString());
 				}
+				else
+				{
+					System.Text.StringBuilder output = new System.Text.StringBuilder();
+					using (System.IO.TextWriter tw = new System.IO.StringWriter(output))
+					{
+						foreach (Replacement r in GuidFormats.Replace(inputStream, tw, findFormat, format, guider, upcase, true))
+						{
+							System.Diagnostics.Debug.WriteLine(r.ToString());
+						}
+					}
 
-				Console.WriteLine(output.ToString());
-				if (Cmdline.Has("copy")) Tools.SetClipboard(output.ToString());
+					Console.WriteLine(output.ToString());
+					if (Cmdline.Has("copy")) Tools.SetClipboard(output.ToString());
+				}
 			}
 		}
 
@@ -186,6 +195,23 @@ namespace GuidGen
 #endif
 
 			string output = string.IsNullOrEmpty(error)?"\r\n":(error+"\r\n");
+
+			string forNetVersion = "";
+#if NET2_0
+			forNetVersion = " for .NET 2.0";
+#elif NET3_5
+			forNetVersion = " for .NET 3.5";
+#elif NET4_0
+			forNetVersion = " for .NET 4.0";
+#elif NET4_5
+			forNetVersion = " for .NET 4.5.2";
+#elif NET4_6
+			forNetVersion = " for .NET 4.6.1";
+#elif DNX451
+			forNetVersion = " for CoreCLR DNX 4.5.1";
+#endif
+			output += "Guidgen v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version + forNetVersion + "\r\n\r\n";
+
 			output += "usage: GuidGen.exe [";
 #if NET2_0 || NET3_5
 			List<string> keys = new List<string>();
@@ -195,6 +221,7 @@ namespace GuidGen
 			output += string.Join("|", (from f in GuidFormats.AvailableFormats select f.Key));
 #endif
 			output += "] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]\r\n";
+
 			output += "\r\n";
 			output += " Output Formats:\r\n";
 			foreach(var format in GuidFormats.AvailableFormats)
@@ -222,7 +249,7 @@ namespace GuidGen
 			output += "  /guid (GUID): uses specified (GUID) as input for find and replace.\r\n";
 			output += "  /clipboard: uses clipboard for find and replace\r\n";
 			output += " Notes:\r\n";
-			output += "  if find or replace is used and data is not piped in (ex: more find.txt | guidgen /find) then enter guids and then type \"quit\" to find/replace and end.";
+			output += "  if find or replace is used and data is not piped in (ex: more find.txt | guidgen /find) then enter guids and then type \"quit\" to find/replace and end.\r\n";
 			Console.Write(output);		
 		}
 	}
