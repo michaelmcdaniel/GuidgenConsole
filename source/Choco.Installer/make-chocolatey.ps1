@@ -1,5 +1,6 @@
 $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
 $testPackageInstall = $true
+$testPackageLocally = $false
 
 Set-Location -path $scriptPath
 $nuspecFile = (join-path $scriptPath "chocolatey.guidgen-console.nuspec")
@@ -44,11 +45,14 @@ else
 
 if ($testPackageInstall) {
 	Write-Host "Creating Test Package with local install"
-	((Get-Content (join-path $scriptPath "tools\chocolateyInstall.ps1")) -replace '\$local\s*=\s*\$\w+$', "`$local = `$true") | out-file  (join-path $scriptPath "tools\chocolateyInstall.ps1")
-	#$rooturl = "" #local
-	((Get-Content (join-path $scriptPath "tools\chocolateyInstall.ps1")) -replace '\$rooturl\s*=\s*".*"\s*#local$', "`$rooturl = ""$scriptPath\..\..\binaries\versions\$version"" #local") | out-file  (join-path $scriptPath "tools\chocolateyInstall.ps1")
+	if ($testPackageLocally) {
+		((Get-Content (join-path $scriptPath "tools\chocolateyInstall.ps1")) -replace '\$local\s*=\s*\$\w+$', "`$local = `$true") | out-file  (join-path $scriptPath "tools\chocolateyInstall.ps1")
+		((Get-Content (join-path $scriptPath "tools\chocolateyInstall.ps1")) -replace '\$rooturl\s*=\s*".*"\s*#local$', "`$rooturl = ""$scriptPath\..\..\binaries\versions\$version"" #local") | out-file  (join-path $scriptPath "tools\chocolateyInstall.ps1")
+	}
 	choco pack $nuspecFile
-	((Get-Content (join-path $scriptPath "tools\chocolateyInstall.ps1")) -replace '\$rooturl\s*=\s*".*"\s*#local$', "`$rooturl = """" #local") | out-file  (join-path $scriptPath "tools\chocolateyInstall.ps1")
+	if ($testPackageLocally) {
+		((Get-Content (join-path $scriptPath "tools\chocolateyInstall.ps1")) -replace '\$rooturl\s*=\s*".*"\s*#local$', "`$rooturl = """" #local") | out-file  (join-path $scriptPath "tools\chocolateyInstall.ps1")
+	}
 	$pkg = join-path $scriptPath "guidgen-console.$version`.nupkg"
 	if (Test-path $pkg) {
 		Write-Host "Installing package`: $pkg"
