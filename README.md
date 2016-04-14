@@ -37,7 +37,7 @@ Guidgen console is a command line application that generates X number of guids i
 <pre>
 c:\> guidgen.exe /?
 
-usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORACLE|ORACLE_HEXTORAW|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]<br/>
+usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORACLE|ORACLE_HEXTORAW|IP|VERSION|INT32|INT64|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]<br/>
 <h6>Output Formats:</h6>
    <b>N</b>: 32 digits
 	<i>0102030405060708090a0b0c0d0e0f10</i>
@@ -75,7 +75,7 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
 	<i>16909060.117966086.202050057.269422093</i>
    <b>Int32</b>: Int32 format (Int32, Int32, Int32, Int32)
 	<i>16909060, 117966086, 202050057, 269422093</i>
-   <b>Int64</b>: Int64format (Int64, Int64)
+   <b>Int64</b>: Int64 format (Int64, Int64)
 	<i>506660481424032516, 1157159078456920585</i>
    <b>ORACLE_HEXTORAW</b>: ORACLE Hex byte array with declaration
 	<i>HEXTORAW('04030201-0605-0807-090a-0b0c0d0e0f10')</i>
