@@ -96,8 +96,8 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
   <b>/l</b>: shows line number for found guids
   <b>/copy</b>: forces copy to clipboard
   <b>/nocopy</b>: does not copy to clipboard
-  <b>/Replace</b>: replaces guid with (/Z|/S|/G) or same guid to specified output format (nocopy) (no-BASE64C)
-  <b>/Replace [format]</b>: replaces specified format with same guid or new guid if (/Z|/S|/G) is specified to specified output format (nocopy)
+  <b>/Replace</b>: replaces guid with (/Z|/S|/G) or same guid to specified output format
+  <b>/Replace [format]</b>: replaces specified format with same guid or new guid if (/Z|/S|/G) is specified to specified output format
   <b>/ReplaceByLine</b>: like replace, but does everything per input line. (see above)
   <b>/ReplaceByLine [format]</b>: like replace, but does everything per input line. (see above)
   <b>/guid (GUID)</b>: uses specified (GUID) as input for find and replace.
@@ -107,18 +107,19 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
    then enter guids and then type "quit" to find/replace and end.
 </pre>	
 <h4>Where can I get it?</h4>
-Latest binaries in the binaries folder of the project or use powershell and <a href="https://chocolatey.org">chocolatey</a>!
+Latest binaries in the binaries folder of the project or use powershell and <a href="https://chocolatey.org">chocolatey</a>!  <i>v2.0.0.3 - Chocolately install will download the binary from github and try to install the matching .NET version</i>
 <code><pre>
 PS C:\> choco install guidgen-console
 </pre></code>
 
 <h4>What dependencies does it have?</h4>
 The latest version is built against the .NET Framework version 4.6.1.<br/>
-available at: <a href="http://go.microsoft.com/fwlink/?LinkId=671729">http://go.microsoft.com/fwlink/?LinkId=671729</a>
+available at: <a href="http://go.microsoft.com/fwlink/?LinkId=671729">http://go.microsoft.com/fwlink/?LinkId=671729</a><br/>
+There are binaries available for .NET frameworks: 2.0,3.5,4.0,4.5.2,4.6.1
 
 <h4>Where do I install it?</h4>
-Install it where ever you want.  I usually drop it into c:\windows\system32 so I can run it from anywhere.<br/>
-If you used chocolatey, then it should be in %ALLUSERSPROFILE%\chocolatey\bin
+Install it where ever you want!<br/>
+I personally use chocolatey which installs a shim in <span title="C:\ProgramData\chocolatey\bin">%ALLUSERSPROFILE%\chocolatey\bin</span>.  This is already in the path, so you can run it from anywhere!
 
 <h4>Can I change the defaults?</h4>
 <b>Yes!</b> Add (or change) <i>guidgen.exe.config</i>
@@ -129,9 +130,9 @@ If you used chocolatey, then it should be in %ALLUSERSPROFILE%\chocolatey\bin
 		&lt;add key=&quot;default:guid:type&quot; value=&quot;G&quot; /&gt;
 		&lt;add key=&quot;default:example&quot; value=&quot;01020304-0506-0708-090a-0b0c0d0e0f10&quot; /&gt;
 	&lt;/appSettings&gt;
-	&lt;startup&gt;
+	<!--&lt;startup&gt;
 		&lt;supportedRuntime version=&quot;v4.0&quot; sku=&quot;.NETFramework,Version=v4.6.1&quot; /&gt;
-	&lt;/startup&gt;
+	&lt;/startup&gt;-->
 &lt;/configuration&gt;</pre></code>
 
 
