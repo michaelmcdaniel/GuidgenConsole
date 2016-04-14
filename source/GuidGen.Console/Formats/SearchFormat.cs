@@ -8,7 +8,6 @@ namespace GuidGen.Formats
 	{
 		private static Regex s_AllMatcher = null;
 		private static Regex s_Matcher = null;
-		private static Regex s_isB64 = new Regex("^[A-Za-z0-9+/]+((=){1,2})?$");
 
 		static SearchFormat()
 		{
@@ -24,19 +23,12 @@ namespace GuidGen.Formats
 				
 			});
 			s_Matcher = new Regex(string.Join("|", formats.ToArray()), RegexOptions.IgnoreCase);
-			formats.Add("^[A-Za-z0-9+/]+((=){1,2})?$");
 			s_AllMatcher = new Regex(string.Join("|", formats.ToArray()), RegexOptions.IgnoreCase);
 		}
 
 		public SearchFormat()
 		{
 			Matcher = s_AllMatcher;
-		}
-
-		protected override Guid MatchToGuid(Match m)
-		{
-			if (s_isB64.IsMatch(m.Value)) return Base64GuidFormat.ToGuid(m);
-			return base.MatchToGuid(m);
 		}
 
 		public override string ToString(Guid g, bool upcase = false, bool newline = false)
