@@ -77,8 +77,6 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
 	<i>16909060, 117966086, 202050057, 269422093</i>
    <b>Int64</b>: Int64 format (Int64, Int64)
 	<i>506660481424032516, 1157159078456920585</i>
-   <b>ORACLE_HEXTORAW</b>: ORACLE Hex byte array with declaration
-	<i>HEXTORAW('04030201-0605-0807-090a-0b0c0d0e0f10')</i>
    <b>BASE64</b>:
 	<i>BAMCAQYFCAcJCgsMDQ4PEA==</i>
    <b>BASE64C</b>: combine bytes to single base64 string
@@ -161,9 +159,12 @@ Generate 3 sequential guids:
 21638464-8ef4-11e1-acb0-0024e8359915
 21638465-8ef4-11e1-acb0-0024e8359915
 21638466-8ef4-11e1-acb0-0024e8359915</code></pre>
-Replace given guid by HC# format:
+Replace guid with another format:
 <pre><code>c:\> guidgen HC# /replace /guid 21638464-8ef4-11e1-acb0-0024e8359915
 0x64,0x84,0x63,0x21,0xf4,0x8e,0xe1,0x11,0xac,0xb0,0x00,0x24,0xe8,0x35,0x99,0x15</code></pre>
+Replace guid with another guid in same format: <i>(replace format is required.)</i>
+<pre><code>c:\> guidgen /G /replace D /guid 21638464-8ef4-11e1-acb0-0024e8359915
+aad71ce1-31d9-409b-ba83-398c8a62cdec</code></pre>
 Find Guids (with line numbers):
 <pre><code>c:\> guidgen N /n 3 > guids.txt
 c:\> more guids.txt | guidgen D /find /l
