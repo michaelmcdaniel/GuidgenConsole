@@ -180,7 +180,7 @@ namespace GuidGen
 					}
 
 					Console.WriteLine(output.ToString());
-					if (Cmdline.Has("copy")) Tools.SetClipboard(output.ToString());
+					if (Cmdline.Has("nocopy")) Tools.SetClipboard(output.ToString());
 				}
 			}
 		}
