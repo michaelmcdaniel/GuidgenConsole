@@ -117,11 +117,11 @@ There are binaries available for .NET frameworks: 2.0,3.5,4.0,4.5.2,4.6.1
 
 <h4>Where do I install it?</h4>
 Install it where ever you want!<br/>
-I personally use chocolatey which installs a shim in <span title="C:\ProgramData\chocolatey\bin">%ALLUSERSPROFILE%\chocolatey\bin</span> that points to <span title="C:\ProgramData\chocolatey\bin">%ALLUSERSPROFILE%\chocolatey\lib\guidgen-console\guidgen.exe</span>.  The shim is already in the path, so you can run it from anywhere!
+I personally use chocolatey which installs a shim in <span title="C:\ProgramData\chocolatey\bin"><i>%ALLUSERSPROFILE%\chocolatey\bin </i></span> that points to <span title="C:\ProgramData\chocolatey\bin"><i>%ALLUSERSPROFILE%\chocolatey\lib\guidgen-console\guidgen.exe </i></span>.  The shim is already in the path, so you can run it from anywhere!
 
 <h4>Can I change the defaults?</h4>
 <b>Yes!</b> Add (or change) <i>guidgen.exe.config</i><br/>
-If you used chocolatey to install, the file should be in <span title="C:\ProgramData\chocolatey\bin">%ALLUSERSPROFILE%\chocolatey\lib\guidgen-console\</span>
+If you used chocolatey to install, the file should be in <span title="C:\ProgramData\chocolatey\lib\guidgen-console\"><i>%ALLUSERSPROFILE%\chocolatey\lib\guidgen-console\ </i></span>
 <code><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;configuration&gt;
 	&lt;appSettings&gt;
