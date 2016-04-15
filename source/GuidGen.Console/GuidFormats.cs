@@ -87,7 +87,6 @@ namespace GuidGen
 			IGuidFormatter formatter = null;
 			if (!s_SearchesByKey.TryGetValue(inputFormat??"", out searcher)) throw new ArgumentOutOfRangeException("Unrecognized search Type: " + outputFormat);
 			if (!string.IsNullOrEmpty(outputFormat) && !s_FormatsByKey.TryGetValue(outputFormat, out formatter)) throw new ArgumentOutOfRangeException("Unrecognized output format: " + outputFormat);
-			if (formatter==null && searcher is IGuidFormatter) formatter = (IGuidFormatter)searcher;
 
 			while (reader.Peek() != -1)
 			{
@@ -120,7 +119,6 @@ namespace GuidGen
 			IGuidFormatter formatter = null;
 			if (!s_SearchesByKey.TryGetValue(inputFormat??"", out searcher)) throw new ArgumentOutOfRangeException("Unrecognized search Type: " + outputFormat);
 			if (!string.IsNullOrEmpty(outputFormat) && !s_FormatsByKey.TryGetValue(outputFormat, out formatter)) throw new ArgumentOutOfRangeException("Unrecognized output format: " + outputFormat);
-			if (formatter==null && searcher is IGuidFormatter) formatter = (IGuidFormatter)searcher;
 
 			int lineCount = 0;
 			string line;
