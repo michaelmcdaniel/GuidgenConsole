@@ -159,10 +159,10 @@ namespace GuidGen.UnitTesting
 			IGuidFormatter formatter = GuidGen.GuidFormats.GetFormatter("N");
 			string toMatch = formatter.ToString(guids, false, true);
 			List<Replacement> replaced = new List<Replacement>();
-			string s = b64c.Replace(text, Guider.AsCurrent(), formatter, false, (r)=> { replaced.Add(r); });
+			string s = b64c.Replace(text + "\r\n", Guider.AsCurrent(), formatter, false, (r)=> { replaced.Add(r); });
 			Assert.AreEqual(toMatch, s);
 
-			s = b64c.Replace(split, Guider.AsCurrent(), formatter, false, (r)=> { replaced.Add(r); });
+			s = b64c.Replace(split + "\r\n", Guider.AsCurrent(), formatter, false, (r)=> { replaced.Add(r); });
 			Assert.AreEqual(toMatch, s);
 
 		}
