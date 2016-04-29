@@ -90,7 +90,7 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
   <b>/u</b>: returns format in uppercase (unless base64)
   <b>/count (number)</b>: will generate the given number of guids
   <b>/n (number)</b>: same as /count
-  <b>/Find (format)</b>: Finds guids in format (no copy)
+  <b>/Find [format]</b>: Finds guids in format
   <b>/l</b>: shows line number for found guids
   <b>/copy</b>: forces copy to clipboard
   <b>/nocopy</b>: does not copy to clipboard
@@ -105,7 +105,7 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORAC
    then enter guids and then type "quit" to find/replace and end.
 </pre>	
 <h4>Where can I get it?</h4>
-Latest binaries in the binaries folder of the project or use powershell and <a href="https://chocolatey.org">chocolatey</a>!  <i>v2.0.0.3 - Chocolately install will download the binary from github and try to install the highest matching .NET version.  If no matching versions, you get the latest version (currently 4.6.1).</i>
+Latest binaries in the binaries folder of the project or use powershell and <a href="https://chocolatey.org">chocolatey</a>!  <i>v2.0.0.3+ - Chocolately install will download the binary from github and try to install the highest matching .NET version.  If no matching versions, you get the latest version (currently 4.6.1).</i>
 <code><pre>
 PS C:\> choco install guidgen-console
 </pre></code>
@@ -163,7 +163,7 @@ Generate 3 sequential guids:
 Replace guid with another format:
 <pre><code>c:\> guidgen HC# /replace /guid 21638464-8ef4-11e1-acb0-0024e8359915
 0x64,0x84,0x63,0x21,0xf4,0x8e,0xe1,0x11,0xac,0xb0,0x00,0x24,0xe8,0x35,0x99,0x15</code></pre>
-Replace guid with another guid in same format: <i>(replace format is required.)</i>
+Replace guid with another guid in same format: <i>(replace format may be required.)</i>
 <pre><code>c:\> guidgen /G /replace D /guid 21638464-8ef4-11e1-acb0-0024e8359915
 aad71ce1-31d9-409b-ba83-398c8a62cdec</code></pre>
 Find Guids (with line numbers):
