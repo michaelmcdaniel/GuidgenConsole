@@ -2,7 +2,7 @@
 
 <h3>Guidgen Console app generates, replaces, finds, and reformats GUIDs from the command line.</h3>
 <p>
-Guidgen console is a command line application that generates X number of guids in the format you want - pasting them to the clipboard - if you wish. But that's not all! It also allows pipe usage to find and replace GUIDs or just run in the background as a reformatter. Oh, the number of times I just needed to convert from one format to another... Try going from code to SQL to LDAP and you'll understand, but if you do understand, then this app is for you.
+Guidgen console (aka Guid Generator) is a command line application that generates X number of guids in the format you want - pasting them to the clipboard - if you wish. But that's not all! It also allows pipe usage to find and replace GUIDs or just run in the background as a reformatter. Oh, the number of times I just needed to convert from one format to another... Try going from code to SQL to LDAP and you'll understand, but if you do understand, then this app is for you.
 </p>
 
 <h4>Features</h4>
