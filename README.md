@@ -168,8 +168,6 @@ Replace guid with another format:
 Replace guid with another guid in same format: <i>(replace format may be required.)</i>
 <pre><code>c:\> guidgen /G /replace D /guid 21638464-8ef4-11e1-acb0-0024e8359915
 aad71ce1-31d9-409b-ba83-398c8a62cdec</code></pre>
-<pre><code>c:\> guidgen /G /replace D /guid 21638464-8ef4-11e1-acb0-0024e8359915
-aad71ce1-31d9-409b-ba83-398c8a62cdec</code></pre>
 Find Guids (with line numbers):
 <pre><code>c:\> guidgen N /n 3 > guids.txt
 c:\> more guids.txt | guidgen D /find /l
