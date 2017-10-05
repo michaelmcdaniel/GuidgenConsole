@@ -37,7 +37,7 @@ Guidgen console (aka Guid Generator) is a command line application that generate
 <pre>
 c:\> guidgen.exe /?
 
-usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|<br/>ORACLE|ORACLE_HEXTORAW|IP|VERSION|INT32|INT64|BASE64|BASE64C]<br/>[/G|/S|/Z] [/nocopy] [/n (number)] [/u]<br/>
+usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|<br/>ORACLE|ORACLE_HEXTORAW|IP|VERSION|INT32|INT64|BASE64|BASE64C|MD5-[FORMAT]]<br/>[/G|/S|/Z] [/nocopy] [/n (number)] [/u]<br/>
 <h6>Output Formats:</h6>
    <b>N</b>: 32 digits
 	<i>0102030405060708090a0b0c0d0e0f10</i>
@@ -81,6 +81,8 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|<br/
 	<i>BAMCAQYFCAcJCgsMDQ4PEA==</i>
    <b>BASE64C</b>: combine bytes to single base64 string
 	<i>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</i>
+   <b>MD5-[FORMAT]</b>: MD5 input string to Guid in the selected format (must use /find)
+	
 
 <h6>Type of GUID to create</h6>
   <b>G</b>: New Guid (default)
@@ -180,4 +182,6 @@ Type "quit" to quit
 &gt; c272825f-79ab-4fcc-b265-e07c488ed8ae
 {C272825F-79AB-4FCC-B265-E07C488ED8AE}
 &gt; quit</code></pre>
-
+Any string to guid:
+<pre><code>c:\> guidgen MD5-D /find MD5-D /replace /guid "MD5 String 2 Guid?"
+6c0a3a7d-05bc-429d-f6ca-502b1fbb23df</code></pre>
