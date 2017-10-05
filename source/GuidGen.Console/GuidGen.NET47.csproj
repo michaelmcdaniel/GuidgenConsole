@@ -4,7 +4,7 @@
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2A816F94-88C5-4ADF-8EAD-E1DCCEF1C27E}</ProjectGuid>
+    <ProjectGuid>{7E5A2415-97B5-4669-9F9A-16B617081C4B}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ApplicationIcon>App.ico</ApplicationIcon>
@@ -26,7 +26,7 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <OldToolsVersion>2.0</OldToolsVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile>
@@ -51,13 +51,13 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\dotNet3_5\Debug\</OutputPath>
+    <OutputPath>bin\dotNet4_7\Debug\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>TRACE;DEBUG;NET3_5</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET4_7</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
@@ -77,13 +77,13 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\dotNet3_5\Release\</OutputPath>
+    <OutputPath>bin\dotNet4_7\Release\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>TRACE;NET3_5</DefineConstants>
+    <DefineConstants>TRACE;NET4_7</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <DebugSymbols>false</DebugSymbols>
@@ -115,34 +115,37 @@
       <Name>System</Name>
     </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Cmdline.cs" />
     <Compile Include="ConsoleClipboardOut.cs" />
+    <Compile Include="Formats\Base64CombinedFormat.cs" />
+    <Compile Include="Formats\BaseGuidFormat.cs" />
+    <Compile Include="Cmdline.cs" />
     <Compile Include="ConsoleEx.cs" />
     <Compile Include="ConsoleExitStream.cs" />
-    <Compile Include="Formats\Base64CombinedFormat.cs" />
-    <Compile Include="Formats\Base64GuidFormat.cs" />
-    <Compile Include="Formats\BaseGuidFormat.cs" />
     <Compile Include="Formats\BaseGuidSearchFormat.cs" />
-    <Compile Include="Formats\GuidFormat.cs" />
     <Compile Include="Formats\Int32OutputFormat.cs" />
     <Compile Include="Formats\Int64OutputFormat.cs" />
-    <Compile Include="Formats\IPAddressGuidFormat.cs" />
     <Compile Include="Formats\MD5OutputFormat.cs" />
     <Compile Include="Formats\SearchFormat.cs" />
     <Compile Include="Formats\VersionGuidFormat.cs" />
     <Compile Include="Found.cs" />
+    <Compile Include="Formats\Base64GuidFormat.cs" />
     <Compile Include="Guider.cs" />
+    <Compile Include="Formats\GuidFormat.cs" />
     <Compile Include="GuidFormats.cs" />
     <Compile Include="IGuidFormatter.cs" />
     <Compile Include="IGuidSearcher.cs" />
+    <Compile Include="Formats\IPAddressGuidFormat.cs" />
     <Compile Include="IValid.cs" />
     <Compile Include="Replacement.cs" />
     <Compile Include="Tools.cs" />
     <Content Include="App.ico" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Guidgen.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -168,6 +171,11 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

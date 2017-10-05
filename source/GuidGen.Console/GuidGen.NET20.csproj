@@ -115,6 +115,7 @@
       <Name>System</Name>
     </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Formats\Int32OutputFormat.cs" />
     <Compile Include="Formats\Int64OutputFormat.cs" />
     <Compile Include="Formats\IPAddressGuidFormat.cs" />
+    <Compile Include="Formats\MD5OutputFormat.cs" />
     <Compile Include="Formats\SearchFormat.cs" />
     <Compile Include="Formats\VersionGuidFormat.cs" />
     <Compile Include="Found.cs" />

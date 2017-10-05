@@ -35,6 +35,14 @@ namespace GuidGen
 			s_Formats.Add(new Base64GuidFormat() { Key="BASE64", Description="Base64 from bytes" });
 			s_Formats.Add(new Base64CombinedFormat() { Key="BASE64C", Description="Combine bytes to single base64 string" });
 
+			// add md5 output formats for all formats
+			List<IGuidFormatter> md5Formats = new List<IGuidFormatter>();
+			foreach(var format in s_Formats)
+			{
+				md5Formats.Add(new MD5OutputFormat() { Key = "MD5-" + format.Key, Description = "MD5 string to " + format.Description, OutputFormat = format });
+			}
+			s_Formats.AddRange(md5Formats);
+
 			foreach(var format in s_Formats)
 			{
 				s_FormatsByKey.Add(format.Key, format);

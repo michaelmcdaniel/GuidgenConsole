@@ -16,13 +16,33 @@ namespace GuidGen.UnitTesting
 			TestFormats(new Guid("00000002-0003-0000-0400-000001000000"));
 			TestFormats(Guid.Empty);
 			TestFormats(new Guid("ffffffff-ffff-ffff-ffff-ffffffffffff"));
+		}
 
+		[TestMethod]
+		public void TestMD5()
+		{
+			IEnumerable<Formats.MD5OutputFormat> formatters = GuidGen.GuidFormats.AvailableFormats.Where(f => f.Key.StartsWith("MD5")).Cast<Formats.MD5OutputFormat>();
+			foreach (var format in formatters)
+			{
+				Guid guid1, guid2;
+				format.TryParse("Just for fun", out guid1);
+				format.TryParse("Just for fun", out guid2);
+				Assert.AreEqual(guid1, guid2);
+				IGuidFormatter internalFormat = GuidGen.GuidFormats.GetFormatter(format.Key.Substring(4));
+				if (!(internalFormat is Formats.VersionGuidFormat)) // if I had the time to find a string that MD5s to a valid version, then we'd use it.  
+				{
+					Assert.AreEqual(internalFormat.ToString(guid1, false, false), format.ToString(guid1, false, false));
+				}
+				format.TryParse("Not for fun", out guid2);
+				Assert.AreNotEqual(guid1, guid2);
+
+			}
 		}
 
 		private void TestFormats(Guid guid)
 		{
 			int defaults = 0;
-			foreach(var format in GuidGen.GuidFormats.AvailableFormats)
+			foreach(var format in GuidGen.GuidFormats.AvailableFormats.Where(f=>!f.Key.StartsWith("MD5")))
 			{
 				Assert.IsFalse(string.IsNullOrEmpty(format.Key));
 				Assert.IsFalse(string.IsNullOrEmpty(format.Description));
@@ -74,7 +94,7 @@ namespace GuidGen.UnitTesting
 
 		private static void TestReplace(Guid guid)
 		{
-			List<IGuidFormatter> formatters = new List<IGuidFormatter>(GuidFormats.AvailableFormats);
+			List<IGuidFormatter> formatters = new List<IGuidFormatter>(GuidFormats.AvailableFormats.Where(f=>!f.Key.StartsWith("MD5")));
 			Guider rgn = Guider.NewGuid;
 			Guider rgs = Guider.NewSequentialGuid;
 			Guider rgz = Guider.NewZeroGuid;
