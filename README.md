@@ -185,3 +185,15 @@ Type "quit" to quit
 Any string to guid:
 <pre><code>c:\> guidgen MD5-D /find MD5-D /replace /guid "MD5 String 2 Guid?"
 6c0a3a7d-05bc-429d-f6ca-502b1fbb23df</code></pre>
+<pre><code>c:\> guidgen MD5-D /replacebyline MD5-D
+Type "quit" to quit
+&gt; Why do this?
+488bcdc4-7ed5-4f10-c644-4d655cf8663e
+&gt; I Don't Know
+4bd31432-d910-a870-b617-e1a1666c67a9
+&gt; I Don't Know
+4bd31432-d910-a870-b617-e1a1666c67a9
+&gt; Because we can!
+b8ecc945-c302-dd2d-7921-9081211480b1
+&gt; quit</code></pre>
+
