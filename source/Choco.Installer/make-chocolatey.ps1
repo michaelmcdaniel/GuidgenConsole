@@ -56,7 +56,7 @@ if ($testPackageInstall) {
 	$pkg = join-path $scriptPath "guidgen-console.$version`.nupkg"
 	if (Test-path $pkg) {
 		Write-Host "Installing package`: $pkg"
-		choco install $pkg --version $version --force
+		choco install $pkg --version $version --force -y
 		Write-Host "removing package`: $pkg"
 		Remove-Item $pkg
 	}
