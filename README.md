@@ -37,7 +37,7 @@ Guidgen console (aka Guid Generator) is a command line application that generate
 <pre>
 c:\> guidgen.exe /?
 
-usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORACLE|ORACLE_HEXTORAW|IP|VERSION|INT32|INT64|BASE64|BASE64C] [/G|/S|/Z] [/nocopy] [/n (number)] [/u]<br/>
+usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|<br/>ORACLE|ORACLE_HEXTORAW|IP|VERSION|INT32|INT64|BASE64|BASE64C]<br/>[/G|/S|/Z] [/nocopy] [/n (number)] [/u]<br/>
 <h6>Output Formats:</h6>
    <b>N</b>: 32 digits
 	<i>0102030405060708090a0b0c0d0e0f10</i>
@@ -163,6 +163,8 @@ Generate 3 sequential guids:
 Replace guid with another format:
 <pre><code>c:\> guidgen HC# /replace /guid 21638464-8ef4-11e1-acb0-0024e8359915
 0x64,0x84,0x63,0x21,0xf4,0x8e,0xe1,0x11,0xac,0xb0,0x00,0x24,0xe8,0x35,0x99,0x15</code></pre>
+<pre><code>c:\> guidgen D /replace H /guid "64 84 63 21 f4 8e e1 11 ac b0 00 24 e8 35 99 15"
+21638464-8ef4-11e1-acb0-0024e8359915</code></pre>
 Replace guid with another guid in same format: <i>(replace format may be required.)</i>
 <pre><code>c:\> guidgen /G /replace D /guid 21638464-8ef4-11e1-acb0-0024e8359915
 aad71ce1-31d9-409b-ba83-398c8a62cdec</code></pre>
