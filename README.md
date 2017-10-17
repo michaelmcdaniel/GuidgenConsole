@@ -107,15 +107,15 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|<br/
    then enter guids and then type "quit" to find/replace and end.
 </pre>	
 <h4>Where can I get it?</h4>
-Latest binaries in the binaries folder of the project or use powershell and <a href="https://chocolatey.org">chocolatey</a>!  <i>v2.0.0.3+ - Chocolately install will download the binary from github and try to install the highest matching .NET version.  If no matching versions, you get the latest version (currently 4.6.1).</i>
+Latest binaries in the binaries folder of the project or use powershell and <a href="https://chocolatey.org">chocolatey</a>!  <i>v2.0.0.3+ - Chocolately install will download the binary from github and try to install the highest matching .NET version.  If no matching versions, you get the latest version of 4.5.</i>
 <code><pre>
 PS C:\> choco install guidgen-console
 </pre></code>
 
 <h4>What dependencies does it have?</h4>
-The latest version is built against the .NET Framework version 4.6.1.<br/>
+The latest version is built against the .NET Framework version 4.7.<br/>
 available at: <a href="http://go.microsoft.com/fwlink/?LinkId=671729">http://go.microsoft.com/fwlink/?LinkId=671729</a><br/>
-There are binaries available for .NET frameworks: 2.0,3.5,4.0,4.5.2,4.6.1
+There are binaries available for .NET frameworks: 2.0,3.5,4.0,4.5,4.6,4.7
 
 <h4>Where do I install it?</h4>
 Install it where ever you want!<br/>
