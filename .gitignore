@@ -14,3 +14,4 @@
 /Binaries/tools/copy_release.bat
 /Binaries/tools/SetVersion.ps1
 /source/Choco.Installer/guidgen-console.2.0.0.5.nupkg
+/.vs/slnx.sqlite
