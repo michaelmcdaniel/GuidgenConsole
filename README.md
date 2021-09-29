@@ -77,6 +77,8 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|<br/
 	<i>16909060, 117966086, 202050057, 269422093</i>
    <b>Int64</b>: Int64 format (Int64, Int64)
 	<i>506660481424032516, 1157159078456920585</i>
+   <b>Int128</b>: Int128/BitInteger
+	<i>21345817372864405881775281973894447876</i>
    <b>BASE64</b>:
 	<i>BAMCAQYFCAcJCgsMDQ4PEA==</i>
    <b>BASE64C</b>: combine bytes to single base64 string
@@ -115,7 +117,7 @@ PS C:\> choco install guidgen-console
 <h4>What dependencies does it have?</h4>
 The latest version is built against the .NET Framework version 4.7.<br/>
 available at: <a href="http://go.microsoft.com/fwlink/?LinkId=671729">http://go.microsoft.com/fwlink/?LinkId=671729</a><br/>
-There are binaries available for .NET frameworks: 2.0,3.5,4.0,4.5,4.6,4.7
+There are binaries available for .NET frameworks: 2.0,3.5,4.0,4.5,4.6,4.7,4.8
 
 <h4>Where do I install it?</h4>
 Install it where ever you want!<br/>
@@ -131,9 +133,6 @@ If you used chocolatey to install, the file should be in <span title="C:\Program
 		&lt;add key=&quot;default:guid:type&quot; value=&quot;G&quot; /&gt;
 		&lt;add key=&quot;default:example&quot; value=&quot;01020304-0506-0708-090a-0b0c0d0e0f10&quot; /&gt;
 	&lt;/appSettings&gt;
-	<!--&lt;startup&gt;
-		&lt;supportedRuntime version=&quot;v4.0&quot; sku=&quot;.NETFramework,Version=v4.6.1&quot; /&gt;
-	&lt;/startup&gt;-->
 &lt;/configuration&gt;</pre></code>
 
 
