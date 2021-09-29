@@ -131,6 +131,7 @@
     <Compile Include="Formats\GuidFormat.cs" />
     <Compile Include="Formats\Int32OutputFormat.cs" />
     <Compile Include="Formats\Int64OutputFormat.cs" />
+    <Compile Include="Formats\Int128OutputFormat.cs" />
     <Compile Include="Formats\IPAddressGuidFormat.cs" />
     <Compile Include="Formats\MD5OutputFormat.cs" />
     <Compile Include="Formats\SearchFormat.cs" />

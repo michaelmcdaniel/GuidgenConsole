@@ -206,7 +206,11 @@ namespace GuidGen
 #elif NET4_5
 			forNetVersion = " for .NET 4.5.2";
 #elif NET4_6
-			forNetVersion = " for .NET 4.6.1";
+			forNetVersion = " for .NET 4.6.2";
+#elif NET4_7
+			forNetVersion = " for .NET 4.7.2";
+#elif NET4_8
+			forNetVersion = " for .NET 4.8";
 #elif DNX451
 			forNetVersion = " for CoreCLR DNX 4.5.1";
 #endif

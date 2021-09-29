@@ -31,7 +31,10 @@ namespace GuidGen
 			s_Formats.Add(new IPAddressGuidFormat() { Key="IP", Description="IP Address format (IPv4/IPv6)" });
 			s_Formats.Add(new VersionGuidFormat() { Key="Version", Description="Version format (Major.Minor.Build.Revision)" });
 			s_Formats.Add(new Int32OutputFormat() { Key="Int32", Description="Int32 format (Int32, Int32, Int32, Int32)" });
-			s_Formats.Add(new Int64OutputFormat() { Key="Int64", Description="Int64format (Int64, Int64)" });
+			s_Formats.Add(new Int64OutputFormat() { Key = "Int64", Description = "Int64format (Int64, Int64)" });
+#if !(NET2_0 || NET3_5 || NET4_0)
+			s_Formats.Add(new Int128OutputFormat() { Key = "Int128", Description = "Int128format (Int128)" });
+#endif
 			s_Formats.Add(new Base64GuidFormat() { Key="BASE64", Description="Base64 from bytes" });
 			s_Formats.Add(new Base64CombinedFormat() { Key="BASE64C", Description="Combine bytes to single base64 string" });
 

@@ -3,7 +3,7 @@
   <metadata>
     <id>guidgen-console</id>
     <title>Guidgen Console</title>
-    <version>2.0.0.7</version>
+    <version>2.0.0.8</version>
     <authors>Michael McDaniel</authors>
     <owners>Michael McDaniel</owners>
     <summary>Generate/Find/Replace GUIDS on the windows command line.</summary>
@@ -13,7 +13,7 @@ But that's not all! It also allows pipe usage to find and replace GUIDs or just 
 Supports zero guids, sequential guids, and plain vanilla guids.
 
 usage: GuidGen.exe [/?] 
-[N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORACLE|ORACLE_HEXTORAW|IP|VERSION|INT32|INT64|BASE64|BASE64C|MD5-[FORMAT]] [/G|/S|/Z] [/nocopy] [/copy] [/n (number)] [/u]
+[N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|ORACLE|ORACLE_HEXTORAW|IP|VERSION|INT32|INT64|INT128|BASE64|BASE64C|MD5-[FORMAT]] [/G|/S|/Z] [/nocopy] [/copy] [/n (number)] [/u]
  [/find [FORMAT] [/l]] [/replace [FORMAT] [/guid {value}] [/clipboard]] [/replacebyline [FORMAT]]
 </description>
     <releaseNotes>Fixed replace with new guid when no replace format specified.</releaseNotes>

@@ -128,6 +128,7 @@
     <Compile Include="Formats\BaseGuidSearchFormat.cs" />
     <Compile Include="Formats\Int32OutputFormat.cs" />
     <Compile Include="Formats\Int64OutputFormat.cs" />
+    <Compile Include="Formats\Int128OutputFormat.cs" />
     <Compile Include="Formats\MD5OutputFormat.cs" />
     <Compile Include="Formats\SearchFormat.cs" />
     <Compile Include="Formats\VersionGuidFormat.cs" />
