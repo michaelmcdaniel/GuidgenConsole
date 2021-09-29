@@ -14,15 +14,14 @@ $version = $xml.package.metadata.version
 ((Get-Content (join-path $scriptPath "tools\chocolateyInstall.ps1")) -replace '\$version\s*=\s*".*?"', "`$version = ""$version""") | out-file  (join-path $scriptPath "tools\chocolateyInstall.ps1")
 
 $rootFile = "$scriptPath\..\..\binaries\versions\$version\guidgen.exe"
-$farg = "-f=""$rootFile"""
-$targ = "-t=md5"
-$checksum = (checksum $targ $farg | out-string).Replace("`r|`n","").Trim()
+$filehash = get-filehash $rootFile -Algorithm MD5
+$checksum = $filehash.Hash
 ((Get-Content (join-path $scriptPath "tools\chocolateyInstall.ps1")) -replace "\`$md5_root\s*=\s*"".*?""", "`$md5_root = ""$checksum""") | out-file  (join-path $scriptPath "tools\chocolateyInstall.ps1")
 
 Get-ChildItem -Path "$scriptPath\..\..\binaries\versions\$version\*\guidgen.exe" | ForEach-Object {
 	$fileName =  $_.FullName
-	$farg = "-f=""$fileName"""
-	$checksum = (checksum $targ $farg | out-string).Replace("`r|`n","").Trim()
+	$filehash = get-filehash $fileName -Algorithm MD5
+	$checksum = $filehash.Hash
 	$folder = [regex]::match($fileName, "\\(?'netv'[^\\]+)\\guidgen\.exe", "IgnoreCase").Groups["netv"].Value.ToLower()
 	if ($folder -match ".+")
 	{
