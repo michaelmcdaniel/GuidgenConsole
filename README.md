@@ -116,7 +116,7 @@ PS C:\> choco install guidgen-console
 
 <h4>What dependencies does it have?</h4>
 The latest version is built against the .NET Framework version 4.8.<br/>
-available at: <a href="http://go.microsoft.com/fwlink/?LinkId=671729">http://go.microsoft.com/fwlink/?LinkId=671729</a><br/>
+available at: <a href="https://dotnet.microsoft.com/download/dotnet-framework">https://dotnet.microsoft.com/download/dotnet-framework</a><br/>
 There are binaries available for .NET frameworks: 2.0,3.5,4.0,4.5,4.6,4.7,4.8
 
 <h4>Where do I install it?</h4>
