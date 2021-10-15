@@ -6,8 +6,8 @@ Guidgen console (aka Guid Generator) is a command line application that generate
 </p>
 <h4>Want to learn more?</h4>
 <ul>
-	<li><a href="https://en.wikipedia.org/wiki/Universally_unique_identifier" target="blank">Wikipedia: Universally unique identifier</a>
-	<li><a href="https://www.ietf.org/rfc/rfc4122.txt" target="blank">IETF: RFC4122</a>
+	<li><a href="https://en.wikipedia.org/wiki/Universally_unique_identifier" target="_blank">Wikipedia: Universally unique identifier</a>
+	<li><a href="https://www.ietf.org/rfc/rfc4122.txt" target="_blank">IETF: RFC4122</a>
 </ul>
 <h4>Features</h4>
 <ul>
