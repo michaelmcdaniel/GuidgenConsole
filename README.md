@@ -114,9 +114,7 @@ usage: GuidGen.exe [N|D|P|B|C|CP|GUID|OLECREATE|DEFINE_GUID|H|HC#|HVB|HLDAP|<br/
 </pre>	
 <h4>Where can I get it?</h4>
 Latest binaries in the binaries folder of the project or use powershell and <a href="https://chocolatey.org">chocolatey</a>!  <i>v2.0.0.3+ - Chocolately install will download the binary from github and try to install the highest matching .NET version.  If no matching versions, you get the latest version of 4.8.</i>
-<code><pre>
-PS C:\> choco install guidgen-console
-</pre></code>
+<pre><code>PS C:\> choco install guidgen-console</code></pre>
 
 <h4>What dependencies does it have?</h4>
 The latest version is built against the .NET Framework version 4.8.<br/>
@@ -130,14 +128,14 @@ I personally use chocolatey which installs a shim in <span title="C:\ProgramData
 <h4>Can I change the defaults?</h4>
 <b>Yes!</b> Add (or change) <i>guidgen.exe.config</i><br/>
 If you used chocolatey to install, the file should be in <span title="C:\ProgramData\chocolatey\lib\guidgen-console\"><i>%ALLUSERSPROFILE%\chocolatey\lib\guidgen-console\ </i></span>
-<code><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;configuration&gt;
 	&lt;appSettings&gt;
 		&lt;add key=&quot;default:output:format&quot; value=&quot;D&quot; /&gt;
 		&lt;add key=&quot;default:guid:type&quot; value=&quot;G&quot; /&gt;
 		&lt;add key=&quot;default:example&quot; value=&quot;01020304-0506-0708-090a-0b0c0d0e0f10&quot; /&gt;
 	&lt;/appSettings&gt;
-&lt;/configuration&gt;</pre></code>
+&lt;/configuration&gt;</code></pre>
 
 
 <h4>How do I add it to Visual Studio Tools?</h4>
