@@ -4,7 +4,11 @@
 <p>
 Guidgen console (aka Guid Generator) is a command line application that generates X number of guids in the format you want - pasting them to the clipboard - if you wish. But that's not all! It also allows pipe usage to find and replace GUIDs or just run in the background as a reformatter. Oh, the number of times I just needed to convert from one format to another... Try going from code to SQL to LDAP and you'll understand, but if you do understand, then this app is for you.
 </p>
-
+<h4>Want to learn more?</h4>
+<ul>
+	<li><a href="https://en.wikipedia.org/wiki/Universally_unique_identifier" target="blank">Wikipedia: Universally unique identifier</a>
+	<li><a href="https://www.ietf.org/rfc/rfc4122.txt" target="blank">IETF: RFC4122</a>
+</ul>
 <h4>Features</h4>
 <ul>
 	<li>Guidgen works on the command line. No clunky windows app needed.</li>
